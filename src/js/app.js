@@ -2,18 +2,17 @@
 function init() {
 
 
-
   console.log('hello');
 
   const $play = $('#play');
   const $countdown = $('#countdown');
-  const $images = $('#images');
+  const $images = $('#imagescontainer');
+  const $imageslice = $('#imageslice');
   const $formdiv = $('#formdiv');
   const $submit = $('#submit');
   const $score =  $('#score');
   let $placeholder =  $('#placeholdertext');
   const useranswer = $('#usertext');
-
 
 
   let timeRemaining = 10;
@@ -23,9 +22,13 @@ function init() {
   const $answer = 'hello';
 
 
-  $score.html(0);
+  $score.html('');
 
 
+
+
+
+  // FUNCTION FOR COUNTDOWN LOGIC
   function countDownLogic() {
 
     if (timeRemaining > 0) {
@@ -40,12 +43,10 @@ function init() {
       if (timeRemaining === 0) {
         // $play.classList.remove('hide');
         console.log('time stops');
-
       } else {
         // $play.classList.remove('ringing');
         // console.log('false');
       }
-
 
     } else {
       timerOn = false;
@@ -53,11 +54,21 @@ function init() {
     }
 
     $play.html('PLAY AGAIN!');
-
-
   }
 
 
+
+  // IMAGE RANDOMISATION
+  const level1 = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg'];
+  level1.sort();
+
+  for (var i = 0; i < level1.length; i++) {
+    $('<img src="images/' + level1[Math.floor(Math.random() * level1.length)] + '">').appendTo($images);
+    $('<li/>').appendTo($images);
+  }
+
+
+  // WHEN YOU CLICK PLAY
   $play.on('click', () => {
 
     if (!timerOn) {
@@ -67,16 +78,18 @@ function init() {
       $images.fadeIn(1000);
       $formdiv.fadeIn(1000);
 
-      // $formdiv.fadeIn( 'slow', function() {
+      //
+      // $('.card').each(function(e) {
+      //
+      //   setTimeout(function() {
+      //     $('.card').eq(e).attr('class', 'card ani' + e);
+      //   }, e * 150)
       // });
-
-      // $formdiv.animate({left: '250px'});
-      // countDownLogic();
     }
-
   });
 
 
+  // CLICK EVENT FOR ANSWER SUBMISSION
   $submit.on('click', (e) => {
     console.log('submitted');
     let answer = useranswer.val();
@@ -91,6 +104,8 @@ function init() {
     } else {
       $placeholder.html('try again');
       console.log('false');
+      $formdiv.shake(100, 20, 5);
+
 
     }
   });
