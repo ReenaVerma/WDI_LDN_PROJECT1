@@ -4,24 +4,42 @@
     <meta charset="utf-8">
     <title>WDI Project 1: JavaScript Game</title>
     <link rel="stylesheet" href="/css/style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" charset="utf-8"></script>
-    <script src="/js/app.js" charset="utf-8"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src="/js/app.js" charset="utf-8"></script>
   </head>
 
     <header>Header</header>
 
 
     <!-- PLAY BUTTON -->
-    <div id='play'></div>
+    <div><button id="play">Play</button></div>
+    <div id='placeholdertext'></div>
+
 
   <main>
 
 
 
     <section class="desktop section1">
-      <div>Drop Movies Here</div>
+      <div>Drop Movies Here
+        <ul id="images" class="hide">
+          <li><img src ="https://www.fillmurray.com/g/140/100"</li>
+          <li><img src ="https://www.fillmurray.com/140/100"</li>
+          <li><img src ="https://www.fillmurray.com/g/140/100"</li>
+          <li><img src ="https://www.fillmurray.com/140/100"</li>
 
-      <div class="bottom">Take Guess Here</div>
+        </ul>
+        <!-- <img src="http://i50.tinypic.com/210dieu.jpg"/> -->
+      </div>
+
+
+      <div>Take Guess Here
+      <form id="formdiv" class="hide">
+
+        <input id="usertext" type="text" value=""/>
+        <input type="submit" id="submit" value="" placeholder="just hit enter!"/>
+      </form>
+    </div>
     </section>
 
 
@@ -30,11 +48,11 @@
 
           <!-- Form -->
           <div class="box" id='countdown'>
-            <p>DIV 1</p>
+            <p></p>
           </div>
 
           <!-- BOX 2 -->
-          <div class="box">
+          <div class="box" id='score'>
             <p>DIV 2</p>
           </div>
 
