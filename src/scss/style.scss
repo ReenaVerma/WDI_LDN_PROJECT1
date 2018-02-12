@@ -11,8 +11,9 @@
 }
 
 body {
-  font-family: 'Karla', sans-serif;
-  background: url('/images/background5.jpg') no-repeat;
+  font-family: 'Source Code Pro', monospace;
+  // background: url('/images/background5.jpg') no-repeat;
+  background: url('http://i.imgur.com/OgAMDPI.gif') no-repeat;
   background-size: cover;
   // height: 600px;
 }
@@ -22,6 +23,7 @@ header {
   height: 50px;
   background-color: #e4e4e4;
 }
+
 
 
 main {
@@ -39,9 +41,16 @@ section {
 height: 100%;
 border: 1px solid red;
 margin: 10px;
+}
 
+h1, h2 {
+  color: #fff;
+  text-align: center;
+}
 
-
+#placeholdertext {
+  color: #fff;
+  text-align: center;
 }
 
 .section1 {
@@ -190,6 +199,11 @@ input[type=submit] {
   height: 100px;
   line-height: 100px;
 }
+
+.disabled{
+    pointer-events:none;
+    opacity:0.4;
+}
 //
 // /* click field focus */
 // input:focus {
@@ -297,7 +311,7 @@ footer ul li {
     float: none;
   }
 }
-// 
+//
 // .card {
 //
 //   clear: left;
