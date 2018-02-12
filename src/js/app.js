@@ -166,14 +166,18 @@ function init() {
 
 
       round += 1;
+      $formdiv.fadeOut(1000);
       // clearing images container
       $images.fadeOut(1000, () => {
         $images.empty();
         game[round].images.forEach(image => {
           $images.append(`<img src="${image}" alt"">`);
+          $formdiv.fadeIn(1000);
           $images.fadeIn(1000);
         });
       });
+
+
 
 
       // $images.fadeIn(1000);
