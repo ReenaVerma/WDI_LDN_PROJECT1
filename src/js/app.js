@@ -9,13 +9,14 @@ function init() {
   const $images = $('#imagescontainer');
   const $imageslice = $('#imageslice');
   const $formdiv = $('#formdiv');
-  const $submit = $('#submit');
+  const $form = $('#formdiv');
   const $score =  $('#score');
   let $placeholder =  $('#placeholdertext');
   const useranswer = $('#usertext');
+  const parent = $('#parent');
 
 
-  let timeRemaining = 10;
+  let timeRemaining = 18;
   let timerOn = false;
   let pointscounter = 0;
   let clock = null; //null is the same as false
@@ -23,9 +24,9 @@ function init() {
   let round = 0;
 
 
-  const game = [{
+  let game = [{
     answer: 'arrival',
-    images: ['images/image1.jpg', 'images/image2.jpg', 'images/image3.jpg', 'images/image4.jpg'],
+    images: ['images/starwars_1.jpg', 'images/starwars_2.jpg', 'images/starwars_3.jpg', 'images/starwars_4.jpg', 'images/starwars_5.jpg', 'images/starwars_6.jpg', 'images/starwars_7.jpg', 'images/starwars_8.jpg', 'images/starwars_9.jpg', 'images/starwars_10.jpg', 'images/starwars_11.jpg', 'images/starwars_12.jpg'],
     level: 1
   }, {
     answer: 'elf',
@@ -37,7 +38,7 @@ function init() {
     level: 3
   }];
 
-  const levelanswer = game[0].answer || game[1].answer || game[2].answer;
+
 
   $score.html('');
   // game[0].image;
@@ -59,7 +60,7 @@ function init() {
     }
 
     return array;
-}
+  }
 
 
   // WHEN YOU CLICK PLAY
@@ -149,28 +150,46 @@ function init() {
   // game[0].answer;
 
   // CLICK EVENT FOR ANSWER SUBMISSION
-  $submit.on('click', (e) => {
+  $form.on('submit', (e) => {
+    e.preventDefault();
     console.log('submitted');
     let answer = useranswer.val();
-    e.preventDefault();
 
 
-    if (answer === game[0].answer) {
+    if (answer === game[0].answer || game[1].answer || game[2].answer) {
       console.log('true');
       let totalpoints = pointscounter += 1;
       $score.html(totalpoints);
       console.log('score updated');
+      $(useranswer).val('');
 
-      let newround = round +=1;
-      game[round].images.forEach(image => {
-        $images.append(`<img src="${image}" alt"">`);
+
+
+      round += 1;
+      // clearing images container
+      $images.fadeOut(1000, () => {
+        $images.empty();
+        game[round].images.forEach(image => {
+          $images.append(`<img src="${image}" alt"">`);
+          $images.fadeIn(1000);
+        });
       });
+
+
+      // $images.fadeIn(1000);
+
+
+
+
+      // game[round].images.forEach(image => {
+      //   $images.append(`<img src="${image}" alt"">`);
+      // });
 
 
     } else {
       $placeholder.html('system error! try again.');
       console.log('false');
-      $formdiv.shake(100, 20, 5);
+      // $formdiv.shake(100, 20, 5);
 
 
     }

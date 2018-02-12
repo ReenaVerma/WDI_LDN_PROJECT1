@@ -4,6 +4,7 @@
 /*footer link color = #003569*/
 /*text grey color = #999*/
 
+@import "helpers/_animate";
 
 
 * {
@@ -13,7 +14,7 @@
 body {
   font-family: 'Source Code Pro', monospace;
   // background: url('/images/background5.jpg') no-repeat;
-  background: url('http://i.imgur.com/OgAMDPI.gif') no-repeat;
+  background: url('http://getwallpapers.com/wallpaper/full/1/4/7/29914.jpg') no-repeat;
   background-size: cover;
   // height: 600px;
 }
@@ -59,6 +60,12 @@ flex-basis: 80%;
 
 .section2 {
 flex-basis: 20%;
+}
+
+.reveal {
+  width: 620px;
+  border: 1px solid green;
+  margin: 0 auto;
 }
 
 div {
