@@ -7,89 +7,81 @@
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
       <script src="/js/app.js" charset="utf-8"></script>
       <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
   </head>
 
-    <h1 class="animated pulse infinite">sci-fi movie quiz</h1>
+  <audio src="sounds/game_music.wav" loop="loop"></audio>
+  <audio id="scoresound" src="sounds/score_sound1.wav" type="audio/mpeg"></audio>
+
+  <audio id="yodasound" src="sounds/star_wars_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="alienssound" src="sounds/aliens_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="idsound" src="sounds/id_sound.mp3" type="audio/mpeg"></audio>
+
+    <h1 class="animated pulse">sci-fi movie quiz</h1>
 
 
 
     <!-- PLAY BUTTON -->
-    <div id="play"><h2>enter play to begin:> play<h2></div>
-    <div id='placeholdertext'></div>
+    <div class="" id="play"><h2>enter play to begin:> play<h2></div>
+    <div><h2 id='placeholdertext'></h2></div>
 
 
   <main>
 
 
 
-    <section class="desktop section1 animated ">
-      <div id="parent">Drop Movies Here
+    <section class="desktop section1">
+      <div class="parent" >
         <div id="imagescontainer" class="hide reveal">
-          <!-- <li id="imageslice"></li>
-          <li id="imageslice"></li>
-          <li id="imageslice"></li>
-          <li id="imageslice"></li> -->
-          <!-- <li></li> -->
-          <!-- <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/g/140/100"</li>
-          <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/140/100"</li>
-          <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/g/140/100"</li>
-          <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/140/100"</li>
-          <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/g/140/100"</li> -->
-          <!-- <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/140/100"</li>
-          <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/g/140/100"</li>
-          <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/140/100"</li>
-          <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/g/140/100"</li>
-          <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/140/100"</li>
-          <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/g/140/100"</li>
-          <li id="imageslice" class="card"><img src ="https://www.fillmurray.com/140/100"</li> -->
+
 
 
         </div>
         <!-- <img src="http://i50.tinypic.com/210dieu.jpg"/> -->
       </div>
 
+</section>
 
-      <div>Take Guess Here
-      <form id="formdiv" class="hide">
+<section class="desktop section2">
 
-        <input id="usertext" type="text" value=""/>
-        <input type="submit" id="submit" value="" placeholder="just hit enter!"/>
+      <div class="parent">
+      <form id="form" class="hide">
+
+        <p>enter you guess below and hit return!</p>
+
+        <div class="formdiv">
+        <input id="usertext" type="text" value=""/><input type="submit" id="submit" value="go!"/>
+        </div>
+
       </form>
     </div>
     </section>
 
 
 
-    <section class="section2">
+    <section class="section3">
 
           <!-- Form -->
-          <div class="box" id='countdown'>
-            <p></p>
+          <div class="box item" id='countdown'>
+
+
           </div>
 
           <!-- BOX 2 -->
-          <div class="box" id='score'>
+          <div class="box item" id='score'>
             <p></p>
           </div>
 
-          <div class="box" id='needhelp'>
-            <p style="color: white;">needed help</p>
+          <div class="box item">
+            <button id='boost'></button>
           </div>
 
-          <div class="box">
-            <p>DIV 4</p>
-          </div>
 
-          <div class="box">
-            <p>DIV 5</p>
-          </div>
+    </section>
 
-          <!-- BOX 3 -->
-          <!-- <div class="box-2">
-            <p>DIV 3</p>
-          </div> -->
 
-      </section>
 
 
 
