@@ -47,7 +47,7 @@ header {
 
 
 main {
-  margin-top: 30px;
+  margin-top:20px;
   border: 0px solid green;
   // background-color: #fafafa;
   overflow: hidden;
@@ -229,28 +229,31 @@ input[type=submit] {
   line-height: 50px;
 }
 
-// #score span {
-//   font-size: 12px;
-//   line-height: 100px;
-// }
-
-button  {
+#boost {
   // border-left: 1px #e4e4e4;
   // border-right: 1px #e4e4e4;
-  // border-style: dashed;
-  // padding-top: 20px;
-  color: #c4bd3a;
+  border-style: dashed;
+  padding-top: 20px;
+  color: #fff;
   font-size: 30px;
   margin: 0 auto;
   height: 100px;
-  width: 100px;
-  // line-height: 50px;
+  line-height: 50px;
 }
 
-// #boost span {
-//   font-size: 12px;
-//   line-height: 100px;
+
+
+
+
+// button  {
+// display: block;
+// margin: 0 auto;
+// width: 150px;
+// height: 50px;
+// background-color: none;
 // }
+
+
 
 .disabled{
     pointer-events:none;
@@ -260,7 +263,6 @@ button  {
 
 
 .box {
-  // background-color: #fff;
   border: 0px dashed #e4e4e4;
   width: 400px;
   margin: 10px auto;
@@ -268,12 +270,11 @@ button  {
   flex-direction: column;
 }
 
-.fa {
-
+.fa-music:hover {
+  color: #42b3f4;
+  cursor: pointer;
 }
-// .item {
-//   flex: 1;
-// }
+
 
 .box, .box-2 p {
   font-size: 14px;
@@ -281,31 +282,6 @@ button  {
   text-align: center;
 }
 
-
-footer {
-  height: 50px;
-  color: #003569;
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 600;
-  padding-left: 10%;
-  padding-right: 10%;
-}
-
-footer ul li {
-  display: inline-block;
-  padding-right: 10px;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  text-align: center;
-  float: right;
-  color: #666;
-}
 
 
 

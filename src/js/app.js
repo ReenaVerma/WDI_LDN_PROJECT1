@@ -21,7 +21,7 @@ function init() {
 
 
 
-  let timeRemaining = 30;
+  let timeRemaining = 60;
   let timerOn = false;
   let totalpoints = 0;
   let clock = null; //null is the same as false
@@ -102,7 +102,7 @@ function init() {
       $images.fadeIn(1000);
       $form.fadeIn(1000);
       $score.hide().html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: 0').fadeIn(2000);
-      $boost.hide().html('<i class="fa fa-music" aria-hidden="true"></i>' + 'Need a clue?').fadeIn(2000);
+      $boost.hide().html('<i class="fa fa-music" aria-hidden="true"></i>' + 'play a sound clip!').fadeIn(2000);
     }
   });
 
@@ -164,6 +164,7 @@ function init() {
           $images.append(`<img src="${image}" alt"">`).fadeIn(1000);
           $form.fadeIn(1000);
         });
+
       });
     } else {
       console.log('incorrect answer!');
@@ -173,9 +174,17 @@ function init() {
 
 
   // CLICK EVENT FOR BOOST BUTTON
+  // $boost.on('hover', () => {
+  //   $boost.addClass('animated pulse');
+  // });
+
+  // CLICK EVENT FOR BOOST BUTTON
   $boost.on('click', () => {
-    (game[round].sound).get(0).play();
+    (game[round].sound).addClass('animated pulse').get(0).play();
   });
+
+
+
 
   // END OF GAME FUNCTION
   function ending() {
