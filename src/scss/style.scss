@@ -14,6 +14,9 @@
 body {
   font-family: 'Source Code Pro', monospace;
   background: url('/images/background_tues.jpg') no-repeat;
+  max-width: 100%;
+  background-size: cover;
+  max-height: 100%;
   // https://orig00.deviantart.net/e9d3/f/2016/339/5/9/animated_star_background_stock_by_firstdarkangel2001-daqohse.gif
   // http://s1.bwallpapers.com/wallpapers/2014/03/23/sunrise-full-hd-wallpaper_113538757.jpg
   // background: url('http://markinternational.info/data/out/804/226132005-space-star-background.png') no-repeat;
@@ -35,24 +38,14 @@ img {
   border: 1px solid #7f7526;
   width: 100px;
   height: 100px;
-
 }
-
-
-header {
-  height: 50px;
-  background-color: #e4e4e4;
-}
-
 
 
 main {
   margin-top:20px;
   border: 0px solid green;
-  // background-color: #fafafa;
   overflow: hidden;
-
-  height: 100%;
+  max-height: 100%;
 }
 
 section {
@@ -85,24 +78,14 @@ h3 {
   font-size: 40px;
 }
 
-
-.section1 {
-flex-basis: 80%;
-// background-color: #000;
-
-}
-
-.section2 {
-background-color: none;
-}
-
 .section3 {
-flex-basis: 20%;
+border-top: 1px solid #2c2d30;
+border-bottom: 1px solid #2c2d30;
 display: flex;
 flex-direction: row;
-margin-top: 10px;
-// background-color: rgba(0,0,0,0.5);
-
+margin-top: 30px;
+padding-bottom: 20px;
+background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(0, 0, 0, 0.5)));
 }
 
 .reveal {
@@ -111,9 +94,6 @@ margin-top: 10px;
   margin: 0 auto;
 }
 
-div {
-  border: 0px solid green;
-}
 
 .parent {
   overflow: hidden;
@@ -122,56 +102,23 @@ div {
 }
 
 
-.bottom {
-  position: absolute;                  /* added */
-   bottom:0;                           /* added */
-   left:0;
-
-}
-
 .hide {
   display: none;
 }
 
-li {
-  list-style-type: none;
-  display: inline;
-}
-
-.fade-in{
-  -webkit-animation: fade-in 2s ease;
-  -moz-animation: fade-in ease-in-out 2s both;
-  -ms-animation: fade-in ease-in-out 2s both;
-  -o-animation: fade-in ease-in-out 2s both;
-  animation: fade-in 2s ease;
-  visibility: visible;
-  -webkit-backface-visibility: hidden;
-}
-
-@-webkit-keyframes fade-in{0%{opacity:0;} 100%{opacity:1;}}
-@-moz-keyframes fade-in{0%{opacity:0} 100%{opacity:1}}
-@-o-keyframes fade-in{0%{opacity:0} 100%{opacity:1}}
-@keyframes fade-in{0%{opacity:0} 100%{opacity:1}}
-
 
 form {
-
   width: 600px;
   margin: 0px auto;
-  // background-color: #fff;
   border: 0px solid #e4e4e4;
-
-
-
 }
+
 
 .formdiv {
   border: 0px solid green;
   margin: 0 auto;
   display: flex;
   width: 400px;
-
-
 }
 
 input[type=text] {
@@ -195,14 +142,9 @@ input[type=submit] {
   background-color: #efefef;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
-
-
 }
 
 #countdown {
-  // border-bottom: 0px yellow;
-  // border-style: solid none;
-
   padding-top: 20px;
   color: #e4e4e4;
   font-size: 30px;
@@ -212,10 +154,6 @@ input[type=submit] {
   line-height: 50px;
 }
 
-// #countdown span {
-//   font-size: 12px;
-//   line-height: 100px;
-// }
 
 #score {
   // border-left: 1px #e4e4e4;
@@ -243,23 +181,10 @@ input[type=submit] {
 
 
 
-
-
-// button  {
-// display: block;
-// margin: 0 auto;
-// width: 150px;
-// height: 50px;
-// background-color: none;
-// }
-
-
-
 .disabled{
     pointer-events:none;
     opacity:0.4;
 }
-
 
 
 .box {
@@ -287,22 +212,40 @@ input[type=submit] {
 
 @media only screen and (max-width: 600px) {
 
-  .desktop {
-    display: none;
+  .section3 {
+  border-top: 1px solid #2c2d30;
+  flex-direction: column;
+  margin-top: 30px;
+  padding-bottom: 30px;
   }
 
-  section {
-    flex-basis: 100%;
-    display: block;
+  .reveal {
+    width: 400px;
   }
 
-  footer  {
-    text-align: center;
-    font-size: 11px;
+  img {
+    dispay: block;
+    border: 1px solid #7f7526;
+    width: 90px;
+    height: 90px;
   }
 
-  .right {
-    text-align: center;
-    float: none;
+  form {
+    width: 400px;
   }
+
+  h1, h2, h3 {
+    padding: 0px 30px 0px 30px;
+  }
+}
+
+@media only screen and (max-width: 899px) {
+
+  .section3 {
+  border-top: 1px solid #2c2d30;
+  flex-direction: column;
+  margin-top: 40px;
+  padding-bottom: 30px;
+  }
+
 }

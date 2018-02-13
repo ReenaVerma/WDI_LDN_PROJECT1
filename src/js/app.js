@@ -6,6 +6,7 @@ function init() {
 
   const $play = $('#play');
   const $countdown = $('#countdown');
+  const $result = $('#result');
   const $images = $('#imagescontainer');
   const $form = $('#form');
   const $score =  $('#score');
@@ -13,6 +14,7 @@ function init() {
   const useranswer = $('#usertext');
   const $boost = $('#boost');
   const $endmessage = $('#endmessage');
+  const $section3 = $('#section3');
 
   const $playsound = $('#scoresound');
   const $yodasound = $('#yodasound');
@@ -21,7 +23,7 @@ function init() {
 
 
 
-  let timeRemaining = 60;
+  let timeRemaining = 10;
   let timerOn = false;
   let totalpoints = 0;
   let clock = null; //null is the same as false
@@ -45,18 +47,16 @@ function init() {
     answer: 'aliens',
     images: ['images/alien1.jpg', 'images/alien2.jpg', 'images/alien3.jpg', 'images/alien4.jpg', 'images/alien5.jpg', 'images/alien6.jpg', 'images/alien7.jpg', 'images/alien8.jpg', 'images/alien9.jpg', 'images/alien10.jpg', 'images/alien11.jpg', 'images/alien12.jpg'],
     level: 2,
-    answerimage: ['images/aliens.jpg'],
+    answerimage: ['images/aliens1.jpg'],
     sound: $alienssound
 
   }, {
     answer: 'independence day',
     images: ['images/id1.jpg', 'images/id2.jpg', 'images/id3.jpg', 'images/id4.jpg', 'images/id5.jpg', 'images/id6.jpg', 'images/id7.jpg', 'images/id8.jpg', 'images/id9.jpg', 'images/id10.jpg', 'images/id11.jpg', 'images/id12.jpg'],
     level: 3,
-    answerimage: ['images/id.jpg'],
+    answerimage: ['images/id1.jpg'],
     sound: $idsound
   }];
-
-
 
 
   // THIS FUNCTION SHUFFLES THE SELECTION OF ARRAY IMAGES
@@ -75,8 +75,9 @@ function init() {
     return array;
   }
 
-
   $boost.hide();
+  $section3.addClass('hide');
+
 
 
 
@@ -91,6 +92,7 @@ function init() {
 
       // APPLY SHUFFLE FUNCTION TO ARRAY OF IMAGES
       shuffle(game[round].images);
+
       // loop through the images
       game[round].images.forEach(image => {
         $images.append(`<img src="${image}" alt"">`);
@@ -101,8 +103,10 @@ function init() {
       // FADE INITIAL DIVS IN AND OUT ON PLAY
       $images.fadeIn(1000);
       $form.fadeIn(1000);
-      $score.hide().html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: 0').fadeIn(2000);
-      $boost.hide().html('<i class="fa fa-music" aria-hidden="true"></i>' + 'play a sound clip!').fadeIn(2000);
+      $section3.removeClass('hide');
+      $section3.addClass('animated fadeInUpBig');
+      $score.html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: 0');
+      $boost.html('<i class="fa fa-music" aria-hidden="true"></i>' + 'play a sound clip!').fadeIn(2000);
     }
   });
 
@@ -157,6 +161,14 @@ function init() {
       // PLAY THE NEXT ROUND OF MOVIES/IMAGES
       round += 1;
       $form.fadeOut(3000);
+
+
+
+      // $result.fadeIn(1000, () => {
+      //   $result.append(game[round].answerimage);
+      // });
+
+
       // clearing images container
       $images.fadeOut(3000, () => {
         $images.empty();
@@ -174,13 +186,11 @@ function init() {
 
 
   // CLICK EVENT FOR BOOST BUTTON
-  // $boost.on('hover', () => {
-  //   $boost.addClass('animated pulse');
-  // });
-
-  // CLICK EVENT FOR BOOST BUTTON
   $boost.on('click', () => {
-    (game[round].sound).addClass('animated pulse').get(0).play();
+    (game[round].sound).get(0).play();
+    $boost.addClass('animated pulse').one('animationend webkitAnimationEnd oAnimationEnd', function() {
+      $boost.removeClass('animated pulse');
+    });
   });
 
 
@@ -192,7 +202,8 @@ function init() {
 
     $endmessage.addClass('animated fadeInUp').html('You scored ' + totalpoints + '/10 points!' + '<br>' + 'Not bad....for a human.').fadeIn(1000);
 
-    $placeholder.hide();
+    $placeholder.addClass('hide');
+    $section3.addClass('hide');
     $images.fadeOut(1000);
     $form.fadeOut(1000);
     $countdown.fadeOut(1000);
