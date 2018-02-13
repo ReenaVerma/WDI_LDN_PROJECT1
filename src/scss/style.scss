@@ -62,7 +62,7 @@ margin: 10px;
 
 }
 
-h1, h2 {
+h1, h2, h3 {
   color: #fff;
   text-align: center;
   font-weight: lighter;
@@ -78,6 +78,12 @@ h2 {
   color: yellow;
 }
 
+h3 {
+  padding: 0px;
+  margin: 0px;
+  color: #42b3f4;
+  font-size: 40px;
+}
 
 
 .section1 {

@@ -6,12 +6,14 @@ function init() {
 
   const $play = $('#play');
   const $countdown = $('#countdown');
-  const $images = $('#imagescontainer');;
+  const $images = $('#imagescontainer');
   const $form = $('#form');
   const $score =  $('#score');
-  let $placeholder =  $('#placeholdertext');
+  const $placeholder =  $('#placeholdertext');
   const useranswer = $('#usertext');
   const $boost = $('#boost');
+  const $endmessage = $('#endmessage');
+
   const $playsound = $('#scoresound');
   const $yodasound = $('#yodasound');
   const $alienssound = $('#alienssound');
@@ -19,11 +21,11 @@ function init() {
 
 
 
-  let timeRemaining = 10;
+  let timeRemaining = 30;
   let timerOn = false;
-  let pointscounter = 0;
+  let totalpoints = 0;
   let clock = null; //null is the same as false
-  const $answer = 'hello';
+  // const $answer = 'hello';
   let round = 0;
 
   //
@@ -57,97 +59,80 @@ function init() {
 
 
 
-  // $score.html('');
-  // game[0].image;
-
+  // THIS FUNCTION SHUFFLES THE SELECTION OF ARRAY IMAGES
   function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
-
     // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-
     // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-
       // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
     }
-
     return array;
   }
 
+
   $boost.hide();
-  // WHEN YOU CLICK PLAY
+
+
+
+  // CLICK EVENT WHEN YOU PRESS PLAY
+  // TIMER STARTS TO COUNTSDOWN
+  // FIRST ROUND OF IMAGES SHUFFLE
   $play.on('click', () => {
 
     if (!timerOn) {
       timerOn = true;
       clock = setInterval(countDownLogic, 1000);
 
-      // $('<li/>').game[0].image.appendTo($images);
-
-
-      // shuffle array
+      // APPLY SHUFFLE FUNCTION TO ARRAY OF IMAGES
       shuffle(game[round].images);
       // loop through the images
       game[round].images.forEach(image => {
         $images.append(`<img src="${image}" alt"">`);
       });
 
-
+      //HIDE PLAY CTA
       $play.addClass('hide');
+      // FADE INITIAL DIVS IN AND OUT ON PLAY
       $images.fadeIn(1000);
       $form.fadeIn(1000);
-
       $score.hide().html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: 0').fadeIn(2000);
       $boost.hide().html('<i class="fa fa-music" aria-hidden="true"></i>' + 'Need a clue?').fadeIn(2000);
-
-
-    } else {
-      // ending();
     }
-
   });
-
-
 
 
   // FUNCTION FOR COUNTDOWN LOGIC
   function countDownLogic() {
 
+    // IF TIME IS GREATER THAN 0
     if (timeRemaining > 0) {
       --timeRemaining;
-      // $countdown.html(timeRemaining);
-      $countdown.html('<i class="fa fa-clock-o" aria-hidden="true"></i>' + 'seconds: ' + timeRemaining).fadeIn(2000);
       console.log('start timer');
+
+      $countdown.html('<i class="fa fa-clock-o" aria-hidden="true"></i>' + 'seconds: ' + timeRemaining).fadeIn(2000);
+
+      // UNHIDE/REVEAL QUIZ IMAGES AND FORM
       $images.removeClass('hide');
       $form.removeClass('hide');
 
-      // $formdiv.removeClass('hide');
-
       // IF COUNTDOWN HITS ZERO ADD CLASS
       if (timeRemaining === 0) {
-        // $play.classList.remove('hide');
         console.log('time stops');
         $form.addClass('disabled');
+        // FUNCTION TO RUN END OF GAME CONTENT
         ending();
-
-      } else {
-        // $play.classList.remove('ringing');
-        // console.log('false');
       }
-
     } else {
       timerOn = false;
       clearInterval(clock);
     }
-
-
   }
-
 
 
   // CLICK EVENT FOR ANSWER SUBMISSION
@@ -156,61 +141,59 @@ function init() {
     console.log('submitted');
     const answer = useranswer.val();
 
-
+    // LOGIC FOR IF THE ANSWER IS CORRECT
     if (answer === game[round].answer) {
-      console.log('true');
-      $score.addClass('animated flash');
+      console.log('answer true');
       $placeholder.html('You got it!  The movie was: ' + game[round].answer);
-      const totalpoints = pointscounter += 1;
-
-      $score.html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: ' + totalpoints);
-      $playsound.get(0).play();
+      totalpoints += 1;
       console.log('score updated');
+
+      // UPDATE THE SCORE ON SCREEN AND FLASH/PLAY SOUND
+      $score.html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: ' + totalpoints).addClass('animated flash');
+      $playsound.get(0).play();
+      // CLEAR THE ANSWER FORM
       $(useranswer).val('');
 
-
-
+      // PLAY THE NEXT ROUND OF MOVIES/IMAGES
       round += 1;
       $form.fadeOut(3000);
       // clearing images container
       $images.fadeOut(3000, () => {
         $images.empty();
-
-
         shuffle(game[round].images).forEach(image => {
-          $images.append(`<img src="${image}" alt"">`);
+          $images.append(`<img src="${image}" alt"">`).fadeIn(1000);
           $form.fadeIn(1000);
-          $images.fadeIn(1000);
         });
       });
-
-
     } else {
       console.log('incorrect answer!');
-      $placeholder.html('epic fail!  try again.');
-      $placeholder.addClass('animated shake');
-      // let totalpoints = [];
-
-      // $formdiv.shake(100, 20, 5);
+      $placeholder.html('epic fail!  try again.').addClass('animated shake');
     }
   });
 
 
+  // CLICK EVENT FOR BOOST BUTTON
   $boost.on('click', () => {
-
     (game[round].sound).get(0).play();
-    // $yodasound.get(0).play();
   });
 
-  // END PLAY
+  // END OF GAME FUNCTION
   function ending() {
-    console.log('time ended');
+    console.log('game over!');
+
+    $endmessage.addClass('animated fadeInUp').html('You scored ' + totalpoints + '/10 points!' + '<br>' + 'Not bad....for a human.').fadeIn(1000);
+
+    $placeholder.hide();
+    $images.fadeOut(1000);
+    $form.fadeOut(1000);
+    $countdown.fadeOut(1000);
+    $score.fadeOut(1000);
+    $boost.fadeOut(1000);
   }
 
 
 
 }
-
 $(init);
 
 // Build basic html structure
