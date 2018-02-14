@@ -96,6 +96,7 @@ function init() {
       // APPLY SHUFFLE FUNCTION TO ARRAY OF IMAGES
       const imagesCopy = game[round].images.slice(0);
       shuffle(imagesCopy);
+      console.log(imagesCopy);
 
       // play sound on level load
       game[round].sound.get(0).play();
@@ -151,7 +152,7 @@ function init() {
   $form.on('submit', (e) => {
     e.preventDefault();
     console.log('submitted');
-    const answer = useranswer.val();
+    const answer = useranswer.val().toLowerCase();
 
     // LOGIC FOR IF THE ANSWER IS CORRECT
     if (answer === game[round].answer) {
@@ -160,7 +161,9 @@ function init() {
       totalpoints += 1;
 
       $images.empty();
+      console.log(game[round].images);
       game[round].images.forEach(image => {
+        console.log('correct image making');
         $images.append(`<img src="${image}" alt"">`);
       });
       console.log('score updated');
@@ -173,36 +176,34 @@ function init() {
       $(useranswer).val('');
 
 
+
+
       // PLAY THE NEXT ROUND OF MOVIES/IMAGES
       round += 1;
       $form.fadeOut(3000);
 
 
-      // CLEARING IMAGES FOLDER AND RELOADING NEW SET OF IMAGES
+
+      setTimeout(function () {
+        game[round].sound.get(0).play(0);
+      }, 3000);
+
+
+
+      // clearing images container
       $images.fadeOut(3000, () => {
-
         $images.empty();
-        (game[round].images).forEach(image => {
-          $images.append(`<img src="${image}" alt"">`).fadeIn(1000);
-        });
-
-        $images.empty();
-        shuffle(game[round].images).forEach(image => {
+        shuffle(game[round].images.slice(0)).forEach(image => {
           $images.append(`<img src="${image}" alt"">`).fadeIn(1000);
           $form.fadeIn(1000);
         });
-      });
 
+      });
     } else {
       console.log('incorrect answer!');
       $placeholder.html('epic fail!  try again.').addClass('animated shake');
     }
   });
-
-  // DELAY NEXT LEVEL SOUND BY 3 SECONDS
-  setTimeout(function () {
-    game[round].sound.get(0).play();
-  }, 3000);
 
 
   // CLICK EVENT FOR BOOST BUTTON
@@ -234,3 +235,33 @@ function init() {
 
 }
 $(init);
+
+// Build basic html structure
+// Pull through variables
+
+// Images sit within grid
+// Images have a disort class
+
+// When 'play' load page with images
+// Loaded images sliced
+// Page loads with timer.
+// Page loads with points score.
+
+// When user types answer, text is parsed as a string.
+// compare the output with the answer.
+// Case insensitive
+
+
+// Level one.  Simple guess vs timer game.
+
+// Level two.  The tiles start to drop off and deducts 1pt per tile.
+
+
+
+
+//IMAGE RANDOMISATION  // function gameplay() {
+//  //  //   const level1 = ['image1.jpg', 'image2.jpg'];  //   // const level2 = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg'];
+//
+//   for (var i = 0; i < level1.length; i++) {  //     $('<img src="images/' + level1[Math.floor(Math.random() * level1.length)] + '">').appendTo($images);  //     $('<li/>').appendTo($images);
+//   }  //
+// }

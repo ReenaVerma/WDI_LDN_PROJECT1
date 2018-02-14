@@ -13,16 +13,16 @@
 
 body {
   font-family: 'Source Code Pro', monospace;
-  background: url('/images/background_tues.jpg') no-repeat;
-  max-width: 100%;
-  background-size: cover;
-  height: 100%;
+  background-image: url('https://media3.giphy.com/media/aRZ4vTsHnyW6A/giphy.gif');
+  background-repeat: repeat;
+}
+
   // https://orig00.deviantart.net/e9d3/f/2016/339/5/9/animated_star_background_stock_by_firstdarkangel2001-daqohse.gif
   // http://s1.bwallpapers.com/wallpapers/2014/03/23/sunrise-full-hd-wallpaper_113538757.jpg
   // background: url('http://markinternational.info/data/out/804/226132005-space-star-background.png') no-repeat;
-  background-size: cover;
+  // background-size: cover;
   // height: 600px;
-}
+
 
 p {
   color: #fff;
@@ -37,7 +37,7 @@ p {
 
 
 main {
-  margin-top:20px;
+  margin-top: -20px;
   border: 0px solid green;
   overflow: hidden;
   max-height: 100%;
@@ -46,7 +46,7 @@ main {
 section {
 height: 100%;
 border: 0px solid red;
-margin: 10px;
+margin: 0px;
 
 }
 
@@ -97,7 +97,8 @@ border-bottom: 0px solid #2c2d30;
 display: flex;
 flex-direction: row;
 margin-top: 30px;
-padding-bottom: 20px;
+padding-top: -10px;
+padding-bottom: 10px;
 background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(0, 0, 0, 0.7)));
 }
 
