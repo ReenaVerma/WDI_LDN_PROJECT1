@@ -16,7 +16,7 @@ body {
   background: url('/images/background_tues.jpg') no-repeat;
   max-width: 100%;
   background-size: cover;
-  max-height: 100%;
+  height: 100%;
   // https://orig00.deviantart.net/e9d3/f/2016/339/5/9/animated_star_background_stock_by_firstdarkangel2001-daqohse.gif
   // http://s1.bwallpapers.com/wallpapers/2014/03/23/sunrise-full-hd-wallpaper_113538757.jpg
   // background: url('http://markinternational.info/data/out/804/226132005-space-star-background.png') no-repeat;
@@ -31,14 +31,9 @@ p {
 
 }
 
-img {
-  dispay: block;
-  float: left;
-  margin: 5px;
-  border: 1px solid #7f7526;
-  width: 100px;
-  height: 100px;
-}
+
+
+
 
 
 main {
@@ -63,6 +58,7 @@ h1, h2, h3 {
 
 h1 {
   font-size: 50px;
+  text-shadow: 0 0 0.2em #42b3f4;
 }
 
 h2 {
@@ -71,21 +67,38 @@ h2 {
   color: yellow;
 }
 
+.white {
+    color: #fff;
+}
+
+button {
+
+  width: 300px;
+  border: 0px;
+  background: none;
+  color: #42b3f4;
+  margin-top: 50px;
+  font-size: 40px;
+  cursor: pointer;
+  letter-spacing: 10px;
+  text-shadow: 0 0 0.2em #8F7
+}
+
 h3 {
   padding: 0px;
-  margin: 0px;
+  margin: 50px;
   color: #42b3f4;
   font-size: 40px;
 }
 
 .section3 {
 border-top: 1px solid #2c2d30;
-border-bottom: 1px solid #2c2d30;
+border-bottom: 0px solid #2c2d30;
 display: flex;
 flex-direction: row;
 margin-top: 30px;
 padding-bottom: 20px;
-background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(0, 0, 0, 0.5)));
+background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(0, 0, 0, 0.7)));
 }
 
 .reveal {
@@ -101,6 +114,23 @@ background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 
 
 }
 
+.intro {
+  height:  270px;
+  width: 250px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border: 0px solid white;
+  cursor: pointer;
+
+}
+
+img {
+  dispay: block;
+  margin: 5px;
+  border: 1px solid #7f7526;
+  width: 100px;
+  height: 100px;
+}
 
 .hide {
   display: none;
@@ -146,12 +176,13 @@ input[type=submit] {
 
 #countdown {
   padding-top: 20px;
-  color: #e4e4e4;
+  color: #c4bd3a;
   font-size: 30px;
   font-weight: 100;
   margin: 0 auto;
   height: 100px;
   line-height: 50px;
+  text-shadow: 0 0 0.3em #c4bd3a;
 }
 
 
@@ -165,6 +196,7 @@ input[type=submit] {
   margin: 0 auto;
   height: 100px;
   line-height: 50px;
+  text-shadow: 0 0 0.3em #c4bd3a;
 }
 
 #boost {
@@ -172,11 +204,12 @@ input[type=submit] {
   // border-right: 1px #e4e4e4;
   border-style: dashed;
   padding-top: 20px;
-  color: #fff;
+  color: #42b3f4;
   font-size: 30px;
   margin: 0 auto;
   height: 100px;
   line-height: 50px;
+  text-shadow: 0 0 0.3em #42b3f4;
 }
 
 

@@ -23,7 +23,7 @@ function init() {
 
 
 
-  let timeRemaining = 10;
+  let timeRemaining = 30;
   let timerOn = false;
   let totalpoints = 0;
   let clock = null; //null is the same as false
@@ -90,11 +90,19 @@ function init() {
       timerOn = true;
       clock = setInterval(countDownLogic, 1000);
 
+
+      // $('body').css('background-image', 'url("/images/background_tues.jpg")').fadeIn();
+
       // APPLY SHUFFLE FUNCTION TO ARRAY OF IMAGES
-      shuffle(game[round].images);
+      const imagesCopy = game[round].images.slice(0);
+      shuffle(imagesCopy);
+
+      // play sound on level load
+      game[round].sound.get(0).play();
+
 
       // loop through the images
-      game[round].images.forEach(image => {
+      imagesCopy.forEach(image => {
         $images.append(`<img src="${image}" alt"">`);
       });
 
@@ -106,7 +114,7 @@ function init() {
       $section3.removeClass('hide');
       $section3.addClass('animated fadeInUpBig');
       $score.html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: 0');
-      $boost.html('<i class="fa fa-music" aria-hidden="true"></i>' + 'play a sound clip!').fadeIn(2000);
+      $boost.html('<i class="fa fa-music" aria-hidden="true"></i>' + 'replay sound clip!').fadeIn(2000);
     }
   });
 
@@ -150,7 +158,13 @@ function init() {
       console.log('answer true');
       $placeholder.html('You got it!  The movie was: ' + game[round].answer);
       totalpoints += 1;
+
+      $images.empty();
+      game[round].images.forEach(image => {
+        $images.append(`<img src="${image}" alt"">`);
+      });
       console.log('score updated');
+
 
       // UPDATE THE SCORE ON SCREEN AND FLASH/PLAY SOUND
       $score.html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: ' + totalpoints).addClass('animated flash');
@@ -158,41 +172,46 @@ function init() {
       // CLEAR THE ANSWER FORM
       $(useranswer).val('');
 
+
       // PLAY THE NEXT ROUND OF MOVIES/IMAGES
       round += 1;
       $form.fadeOut(3000);
 
 
-
-      // $result.fadeIn(1000, () => {
-      //   $result.append(game[round].answerimage);
-      // });
-
-
-      // clearing images container
+      // CLEARING IMAGES FOLDER AND RELOADING NEW SET OF IMAGES
       $images.fadeOut(3000, () => {
+
+        $images.empty();
+        (game[round].images).forEach(image => {
+          $images.append(`<img src="${image}" alt"">`).fadeIn(1000);
+        });
+
         $images.empty();
         shuffle(game[round].images).forEach(image => {
           $images.append(`<img src="${image}" alt"">`).fadeIn(1000);
           $form.fadeIn(1000);
         });
-
       });
+
     } else {
       console.log('incorrect answer!');
       $placeholder.html('epic fail!  try again.').addClass('animated shake');
     }
   });
 
+  // DELAY NEXT LEVEL SOUND BY 3 SECONDS
+  setTimeout(function () {
+    game[round].sound.get(0).play();
+  }, 3000);
+
 
   // CLICK EVENT FOR BOOST BUTTON
   $boost.on('click', () => {
     (game[round].sound).get(0).play();
-    $boost.addClass('animated pulse').one('animationend webkitAnimationEnd oAnimationEnd', function() {
+    $boost.addClass('animated pulse infinite').one('animationend webkitAnimationEnd oAnimationEnd', function() {
       $boost.removeClass('animated pulse');
     });
   });
-
 
 
 
@@ -215,33 +234,3 @@ function init() {
 
 }
 $(init);
-
-// Build basic html structure
-// Pull through variables
-
-// Images sit within grid
-// Images have a disort class
-
-// When 'play' load page with images
-// Loaded images sliced
-// Page loads with timer.
-// Page loads with points score.
-
-// When user types answer, text is parsed as a string.
-// compare the output with the answer.
-// Case insensitive
-
-
-// Level one.  Simple guess vs timer game.
-
-// Level two.  The tiles start to drop off and deducts 1pt per tile.
-
-
-
-
-//IMAGE RANDOMISATION  // function gameplay() {
-//  //  //   const level1 = ['image1.jpg', 'image2.jpg'];  //   // const level2 = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg'];
-//
-//   for (var i = 0; i < level1.length; i++) {  //     $('<img src="images/' + level1[Math.floor(Math.random() * level1.length)] + '">').appendTo($images);  //     $('<li/>').appendTo($images);
-//   }  //
-// }
