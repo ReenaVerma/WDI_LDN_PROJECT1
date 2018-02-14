@@ -20,7 +20,7 @@
   <audio id="etsound" src="sounds/ET_sound.mp3" type="audio/mpeg"></audio>
   <audio id="matrixsound" src="sounds/the_matrix.mp3" type="audio/mpeg"></audio>
   <audio id="terminatorsound" src="sounds/terminator2_sound.mp3" type="audio/mpeg"></audio>
-
+  <audio id="flashsound" src="sounds/flash_gordon_sound.mp3" type="audio/mpeg"></audio>
 
   <main>
   <h1 class="animated pulse">sci-fi movie quiz</h1>
@@ -55,7 +55,7 @@
             <p>enter your guess below and hit return!</p>
 
               <div class="formdiv">
-                <input id="usertext" type="text" value=""/><input type="submit" id="submit" value="go!"/>
+                <input id="usertext" type="text" autocomplete="off"/><input type="submit" id="submit" value="go!"/>
               </div>
 
           </form>
@@ -66,7 +66,7 @@
 
           <div class="box item" id='countdown'></div>
           <div class="box item" id='score'></div>
-          <div id='boost' class="box item"></div>
+          <div id='boost' class="box item animated pulse infinite"></div>
 
     </section>
 

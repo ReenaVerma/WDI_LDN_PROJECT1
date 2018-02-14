@@ -23,6 +23,7 @@ function init() {
   const $etsound = $('#etsound');
   const $matrixSound = $('#matrixsound');
   const $terminatorsound = $('#terminatorsound');
+  const $flashsound = $('#flashsound');
 
 
 
@@ -66,10 +67,10 @@ function init() {
     images: ['images/flash1.jpg', 'images/flash2.jpg', 'images/flash3.jpg', 'images/flash4.jpg', 'images/flash5.jpg', 'images/flash6.jpg', 'images/flash7.jpg', 'images/flash8.jpg', 'images/flash9.jpg', 'images/flash10.jpg', 'images/flash11.jpg', 'images/flash12.jpg' ],
     level: 4,
     answerimage: ['images/aliens1.jpg'],
-    sound: $alienssound
+    sound: $flashsound
 
   },{
-    answer: 'the terminator',
+    answer: 'terminator 2',
     images: ['images/t1.jpg', 'images/t2.jpg', 'images/t3.jpg', 'images/t4.jpg', 'images/t5.jpg', 'images/t6.jpg', 'images/t7.jpg', 'images/t8.jpg', 'images/t9.jpg', 'images/t10.jpg', 'images/t11.jpg', 'images/t12.jpg' ],
     level: 5,
     answerimage: ['images/aliens1.jpg'],
@@ -188,14 +189,12 @@ function init() {
 
 
     let str = (game[round].answer);
-    str = str.toLowerCase().replace(/\b[a-z]/g, function(letter) {
-      return letter.toUpperCase();
-    });
+    str = str.toUpperCase();
 
     // LOGIC FOR IF THE ANSWER IS CORRECT
     if (answer === game[round].answer) {
       console.log('answer true');
-      $placeholder.html('You got it!  The movie was: ' + '<br>' + str);
+      $placeholder.html('You got it!  The movie was: ' + str);
       totalpoints += 1;
 
       $images.empty();
@@ -258,7 +257,17 @@ function init() {
   function ending() {
     console.log('game over!');
 
-    $endmessage.addClass('animated fadeInUp').html('You scored ' + totalpoints + '/10 points!' + '<br>' + 'Not bad....for a human.').fadeIn(1000);
+    $endmessage.addClass('animated fadeInUp').html('You scored ' + totalpoints + '/10 points!' + '<br>' + 'Not bad....for a human.' + '<br>').fadeIn(1000);
+
+    const reset = $('<button></button>').text('play again').addClass('animated pulse infinite');
+    $endmessage.append(reset);
+
+    reset.on('click', () => {
+      // $play.click();
+      location.reload();
+    });
+
+
 
     $placeholder.addClass('hide');
     $section3.addClass('hide');
