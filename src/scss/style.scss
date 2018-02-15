@@ -1,75 +1,15 @@
-/*background color = #fafafa*/
-/*button blue = #3897f0*/
-/*border color = #e6e6e6*/
-/*footer link color = #003569*/
-/*text grey color = #999*/
+
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
 @import "helpers/_animate";
-
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Source Code Pro', monospace;
-  background-image: url('../../images/stars.gif');
-  background-repeat: repeat;
-}
-
-  // https://orig00.deviantart.net/e9d3/f/2016/339/5/9/animated_star_background_stock_by_firstdarkangel2001-daqohse.gif
-  // http://s1.bwallpapers.com/wallpapers/2014/03/23/sunrise-full-hd-wallpaper_113538757.jpg
-  // background: url('http://markinternational.info/data/out/804/226132005-space-star-background.png') no-repeat;
-  // background-size: cover;
-  // height: 600px;
-
-
-p {
-  color: #fff;
-  text-align: center;
-  font-size: 19px;
-
-}
+@import "helpers/_typography";
+@import "helpers/_form";
+@import "helpers/_counters";
+@import "helpers/_containers";
 
 
 
-
-
-
-main {
-  margin-top: -20px;
-  border: 0px solid green;
-  overflow: hidden;
-  max-height: 100%;
-}
-
-section {
-height: 100%;
-border: 0px solid red;
-margin: 0px;
-
-}
-
-h1, h2, h3 {
-  color: #fff;
-  text-align: center;
-  font-weight: lighter;
-}
-
-h1 {
-  font-size: 50px;
-  text-shadow: 0 0 0.2em #42b3f4;
-}
-
-h2 {
-  padding: 0px;
-  margin: -20px;
-  color: yellow;
-}
-
-.white {
-    color: #fff;
-}
 
 button {
 
@@ -84,22 +24,7 @@ button {
   text-shadow: 0 0 0.2em #8F7
 }
 
-h3 {
-  padding: 0px;
-  margin: 50px;
-  color: #42b3f4;
-  font-size: 40px;
-}
 
-.section3 {
-border-top: 1px solid #2c2d30;
-border-bottom: 0px solid #2c2d30;
-display: flex;
-flex-direction: row;
-margin-top: 20px;
-padding-top: 0px;
-background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(0, 0, 0, 0.7)));
-}
 
 .reveal {
   width: 450px;
@@ -137,83 +62,6 @@ img {
 }
 
 
-form {
-  width: 600px;
-  margin: 0px auto;
-  border: 0px solid #e4e4e4;
-}
-
-
-.inputcontainer {
-  border: 0px solid green;
-  margin: 0 auto;
-  display: flex;
-  width: 400px;
-}
-
-input[type=text] {
-  width: 370px;
-  padding: 8px 12px;
-  border: 1px solid #e4e4e4;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  background-color: rgba(255,255,255, 0.2);
-  cursor: text;
-  color: white;
-  font-size: 25px;
-  outline: none;
-  height: 50px;
-  margin: 0 auto;
-
-}
-
-input[type=submit] {
-  width: 10%;
-  background-color: #efefef;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-#countdown {
-  padding-top: 20px;
-  color: #c4bd3a;
-  font-size: 30px;
-  font-weight: 100;
-  margin: 0 auto;
-  height: 100px;
-  line-height: 50px;
-  text-shadow: 0 0 0.3em #c4bd3a;
-}
-
-
-#score {
-  // border-left: 1px #e4e4e4;
-  // border-right: 1px #e4e4e4;
-  border-style: dashed;
-  padding-top: 20px;
-  color: #c4bd3a;
-  font-size: 30px;
-  margin: 0 auto;
-  height: 100px;
-  line-height: 50px;
-  text-shadow: 0 0 0.3em #c4bd3a;
-}
-
-#boost {
-  // border-left: 1px #e4e4e4;
-  // border-right: 1px #e4e4e4;
-  border-style: dashed;
-  padding-top: 20px;
-  color: #42b3f4;
-  font-size: 30px;
-  margin: 0 auto;
-  height: 100px;
-  line-height: 50px;
-  text-shadow: 0 0 0.3em #42b3f4;
-}
-
-
-
 .disabled{
     pointer-events:none;
     opacity:0.4;
@@ -221,12 +69,16 @@ input[type=submit] {
 
 
 .box {
-  border: 0px dashed #e4e4e4;
+  border: 1px dashed #e4e4e4;
   width: 400px;
   margin: 10px auto;
   display: flex;
   flex-direction: column;
+  text-align: center;
+  justify-content: center;
 }
+
+
 
 .fa-music:hover {
   color: #42b3f4;
@@ -234,23 +86,12 @@ input[type=submit] {
 }
 
 
-.box, .box-2 p {
-  font-size: 14px;
-  color: black;
-  text-align: center;
-}
 
 
 
 
 @media only screen and (max-width: 600px) {
 
-  .section3 {
-  border-top: 1px solid #2c2d30;
-  flex-direction: column;
-  margin-top: 30px;
-  padding-bottom: 30px;
-  }
 
   .reveal {
     width: 400px;
@@ -270,15 +111,4 @@ input[type=submit] {
   h1, h2, h3 {
     padding: 0px 30px 0px 30px;
   }
-}
-
-@media only screen and (max-width: 899px) {
-
-  .section3 {
-  border-top: 1px solid #2c2d30;
-  flex-direction: column;
-  margin-top: 40px;
-  padding-bottom: 30px;
-  }
-
 }
