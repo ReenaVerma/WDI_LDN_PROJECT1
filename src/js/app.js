@@ -1,4 +1,4 @@
-let timeRemaining = 4;
+let timeRemaining = 20;
 let timerOn = false;
 let totalpoints = 0;
 let clock = null;
@@ -84,6 +84,7 @@ function init() {
   // CLICK EVENT WHEN YOU PRESS PLAY
   // TIMER STARTS TO COUNTSDOWN
   $play.on('click', playGame);
+  $boost.on('click', boostAnimation);
 
   // functions section
 
@@ -134,7 +135,13 @@ function init() {
     }
   }
 
-
+  // FUNCTION FOR BOOST BUTTON
+  function boostAnimation() {
+    (game[round].sound).get(0).play();
+    $boost.addClass('animated pulse infinite').one('animationend webkitAnimationEnd oAnimationEnd', function() {
+      $boost.removeClass('animated pulse');
+    });
+  }
 
   // FUNCTION FOR COUNTDOWN LOGIC
   function countDownLogic() {
@@ -163,31 +170,26 @@ function init() {
     }
   }
 
-
+  // $play.on('click', playGame);
   // CLICK EVENT FOR ANSWER SUBMISSION
   $form.on('submit', (e) => {
+
     e.preventDefault();
     console.log('submitted');
     const answer = useranswer.val().toLowerCase();
-
 
     let str = (game[round].answer);
     str = str.toUpperCase();
 
     // LOGIC FOR IF THE ANSWER IS CORRECT
     if (answer === game[round].answer) {
-      console.log('answer true');
-      $placeholder.html('You got it!  The movie was: ' + str);
-      totalpoints += 1;
+      $placeholder.html('You got it!  The movie was: ' + str); totalpoints += 1;
 
+      // SHOW THE CORRECT IMAGES IN ORDER
       $images.empty();
-      console.log(game[round].images);
       game[round].images.forEach(image => {
-        console.log('correct image making');
         $images.append(`<img src="${image}" alt"">`);
       });
-      console.log('score updated');
-
 
       // UPDATE THE SCORE ON SCREEN AND FLASH/PLAY SOUND
       $score.html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: ' + totalpoints).addClass('animated flash');
@@ -195,22 +197,11 @@ function init() {
       // CLEAR THE ANSWER FORM
       $(useranswer).val('');
 
-
-
-
       // PLAY THE NEXT ROUND OF MOVIES/IMAGES
       round += 1;
       $form.fadeOut(3000);
 
-
-
-      setTimeout(function () {
-        game[round].sound.get(0).play(0);
-      }, 3000);
-
-
-
-      // clearing images container
+      // CLEAR THE IMAGES CONTAINER AND SHUFFLE NEXT ROUND OF IMAGES
       $images.fadeOut(3000, () => {
         $images.empty();
         shuffle(game[round].images.slice(0)).forEach(image => {
@@ -220,21 +211,10 @@ function init() {
 
       });
     } else {
-      console.log('incorrect answer!');
       $placeholder.html('epic fail!  try again.').addClass('animated shake');
       $incorrectSound.get(0).play();
     }
   });
-
-
-  // CLICK EVENT FOR BOOST BUTTON
-  $boost.on('click', () => {
-    (game[round].sound).get(0).play();
-    $boost.addClass('animated pulse infinite').one('animationend webkitAnimationEnd oAnimationEnd', function() {
-      $boost.removeClass('animated pulse');
-    });
-  });
-
 
 
   // END OF GAME FUNCTION
@@ -262,7 +242,7 @@ function init() {
     $form.removeClass('disabled');
     totalpoints = 0;
     round = 0;
-    timeRemaining = 4;
+    timeRemaining = 20;
     $images.empty().show();
     $parent.css({ marginTop: '20px' });
     $endmessage.addClass('hide').hide();
