@@ -10,10 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
-  <!-- General game background music -->
-  <!-- <audio autoplay src="sounds/daft_punk.mp3" loop="loop"></audio> -->
-  <!-- Game points sound -->
-  <audio id="scoresound" src="sounds/score_sound1.wav" type="audio/mpeg"></audio>
+  <!--  -->
+  <audio id="pointssound" src="sounds/points_score.wav" type="audio/mpeg"></audio>
+  <audio id="incorrectSound" src="sounds/incorrect_sound.wav" type="audio/mpeg"></audio>
   <audio id="yodasound" src="sounds/star_wars_sound.mp3" type="audio/mpeg"></audio>
   <audio id="alienssound" src="sounds/aliens_sound.mp3" type="audio/mpeg"></audio>
   <audio id="idsound" src="sounds/id_sound.mp3" type="audio/mpeg"></audio>
@@ -23,25 +22,26 @@
   <audio id="flashsound" src="sounds/flash_gordon_sound.mp3" type="audio/mpeg"></audio>
 
   <main>
-  <h1 class="animated pulse">sci-fi movie quiz</h1>
+    <h1 class="animated pulse">sci-fi movie quiz</h1>
 
-  <!-- PLAY BUTTON -->
-  <div id="play">
-    <h2 class="white">Think you're an intergalactic movie buff?<h2>
-    <img class="intro animated shake" src="images/alien_face.png" alt=""/>
-    <h2 class="white">See how many movies you can guess, <br />from the jumbled images!<h2>
-    <button id="play" class="animated pulse infinite">play now</button>
+    <!-- PLAY BUTTON -->
+    <div id="play">
+      <h2 class="white">Think you're an intergalactic movie buff?<h2>
+      <img class="intro animated shake" src="images/alien_face.png" alt=""/>
+      <h2 class="white">See how many movies you can guess, <br />from the jumbled images!<h2>
+      <button id="play" class="animated pulse infinite">play now</button>
+    </div>
 
-  </div>
-  <div><h2 id='placeholdertext'></h2></div>
-
-
-
+    <div>
+      <h2 id='placeholdertext'></h2>
+    </div>
 
     <section class="section1">
 
       <div class="parent" >
-        <div><h3 id="endmessage"></h3></div>
+        <div>
+          <h3 id="endmessage"></h3>
+        </div>
         <div id="result"></div>
         <div id="imagescontainer" class="hide reveal"></div>
       </div>
@@ -54,7 +54,7 @@
 
             <p>enter your guess below and hit return!</p>
 
-              <div class="formdiv">
+              <div class="inputcontainer">
                 <input id="usertext" type="text" autocomplete="off"/><input type="submit" id="submit" value="go!"/>
               </div>
 

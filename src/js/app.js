@@ -1,12 +1,15 @@
+let timeRemaining = 4;
+let timerOn = false;
+let totalpoints = 0;
+let clock = null;
+let round = 0;
 
 function init() {
-
 
   console.log('hello');
 
   const $play = $('#play');
   const $countdown = $('#countdown');
-  const $result = $('#result');
   const $images = $('#imagescontainer');
   const $form = $('#form');
   const $score =  $('#score');
@@ -15,8 +18,10 @@ function init() {
   const $boost = $('#boost');
   const $endmessage = $('#endmessage');
   const $section3 = $('#section3');
+  const $parent = $('.parent');
 
-  const $playsound = $('#scoresound');
+  const $playsound = $('#pointssound');
+  const $incorrectSound = $('#incorrectSound');
   const $yodasound = $('#yodasound');
   const $alienssound = $('#alienssound');
   const $idsound = $('#idsound');
@@ -24,22 +29,6 @@ function init() {
   const $matrixSound = $('#matrixsound');
   const $terminatorsound = $('#terminatorsound');
   const $flashsound = $('#flashsound');
-
-
-
-
-  let timeRemaining = 60;
-  let timerOn = false;
-  let totalpoints = 0;
-  let clock = null; //null is the same as false
-  // const $answer = 'hello';
-  let round = 0;
-
-  //
-  // $(document).ready(function() {
-  //   $('#my_audio').get(0).play();
-  // });
-
 
   const game = [{
     answer: 'star wars',
@@ -91,6 +80,12 @@ function init() {
 
   }];
 
+  // add event listeners section
+  // CLICK EVENT WHEN YOU PRESS PLAY
+  // TIMER STARTS TO COUNTSDOWN
+  $play.on('click', playGame);
+
+  // functions section
 
   // THIS FUNCTION SHUFFLES THE SELECTION OF ARRAY IMAGES
   function shuffle(array) {
@@ -112,30 +107,18 @@ function init() {
   $section3.addClass('hide');
 
 
-
-
-  // CLICK EVENT WHEN YOU PRESS PLAY
-  // TIMER STARTS TO COUNTSDOWN
-  // FIRST ROUND OF IMAGES SHUFFLE
-  $play.on('click', () => {
-
+  function playGame() {
     if (!timerOn) {
       timerOn = true;
       clock = setInterval(countDownLogic, 1000);
 
-
-      // $('body').css('background-image', 'url("/images/background_tues.jpg")').fadeIn();
-
       // APPLY SHUFFLE FUNCTION TO ARRAY OF IMAGES
       const imagesCopy = game[round].images.slice(0);
       shuffle(imagesCopy);
-      console.log(imagesCopy);
-
-      // play sound on level load
+      // PLAY SOUND ON LEVEL LOAD
       game[round].sound.get(0).play();
 
-
-      // loop through the images
+      // LOOP THROUGH THE IMAGES
       imagesCopy.forEach(image => {
         $images.append(`<img src="${image}" alt"">`);
       });
@@ -145,12 +128,12 @@ function init() {
       // FADE INITIAL DIVS IN AND OUT ON PLAY
       $images.fadeIn(1000);
       $form.fadeIn(1000);
-      $section3.removeClass('hide');
-      $section3.addClass('animated fadeInUpBig');
-      $score.html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: 0');
+      $section3.removeClass('hide').addClass('animated fadeInUpBig');
+      $score.html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: 0').fadeIn(2000);
       $boost.html('<i class="fa fa-music" aria-hidden="true"></i>' + 'replay sound clip!').fadeIn(2000);
     }
-  });
+  }
+
 
 
   // FUNCTION FOR COUNTDOWN LOGIC
@@ -239,6 +222,7 @@ function init() {
     } else {
       console.log('incorrect answer!');
       $placeholder.html('epic fail!  try again.').addClass('animated shake');
+      $incorrectSound.get(0).play();
     }
   });
 
@@ -262,13 +246,6 @@ function init() {
     const reset = $('<button></button>').text('play again').addClass('animated pulse infinite');
     $endmessage.append(reset);
 
-    reset.on('click', () => {
-      // $play.click();
-      location.reload();
-    });
-
-
-
     $placeholder.addClass('hide');
     $section3.addClass('hide');
     $images.fadeOut(1000);
@@ -276,11 +253,26 @@ function init() {
     $countdown.fadeOut(1000);
     $score.fadeOut(1000);
     $boost.fadeOut(1000);
+
+    reset.on('click', resetGame);
+  }
+
+  function resetGame() {
+    $placeholder.html('').css({margin: '0'}).removeClass('hide');
+    $form.removeClass('disabled');
+    totalpoints = 0;
+    round = 0;
+    timeRemaining = 4;
+    $images.empty().show();
+    $parent.css({ marginTop: '20px' });
+    $endmessage.addClass('hide').hide();
+    $section3.removeClass('hide');
+    playGame();
   }
 
 
-
 }
+
 $(init);
 
 // Build basic html structure
@@ -291,7 +283,7 @@ $(init);
 
 // When 'play' load page with images
 // Loaded images sliced
-// Page loads with timer.
+// Page loads with r.
 // Page loads with points score.
 
 // When user types answer, text is parsed as a string.
@@ -299,7 +291,7 @@ $(init);
 // Case insensitive
 
 
-// Level one.  Simple guess vs timer game.
+// Level one.  Simple guess vs r game.
 
 // Level two.  The tiles start to drop off and deducts 1pt per tile.
 
