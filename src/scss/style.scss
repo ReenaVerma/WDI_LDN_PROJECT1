@@ -1,3 +1,11 @@
+$text-blue: #42b3f4;
+$text-yellow: #c4bd3a;
+$text-white: #ffffff;
+$image-yellow: #7f7526;
+$light-grey: #e4e4e4;
+$darker-grey: #2c2d30;
+$green: #8F7;
+
 
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
@@ -7,55 +15,8 @@
 @import "helpers/_form";
 @import "helpers/_counters";
 @import "helpers/_containers";
+@import "helpers/_images";
 
-
-
-
-button {
-
-  width: 300px;
-  border: 0px;
-  background: none;
-  color: #42b3f4;
-  margin-top: 50px;
-  font-size: 40px;
-  cursor: pointer;
-  letter-spacing: 10px;
-  text-shadow: 0 0 0.2em #8F7
-}
-
-
-
-.reveal {
-  width: 450px;
-  border: 0px solid green;
-  margin: 0 auto;
-}
-
-
-.parent {
-  overflow: hidden;
-  border: 0px solid orange;
-
-}
-
-.intro {
-  height:  270px;
-  width: 250px;
-  margin-top: 50px;
-  margin-bottom: 50px;
-  border: 0px solid white;
-  cursor: pointer;
-
-}
-
-img {
-  dispay: block;
-  margin: 5px;
-  border: 1px solid #7f7526;
-  width: 100px;
-  height: 100px;
-}
 
 .hide {
   display: none;
@@ -65,50 +26,4 @@ img {
 .disabled{
     pointer-events:none;
     opacity:0.4;
-}
-
-
-.box {
-  border: 1px dashed #e4e4e4;
-  width: 400px;
-  margin: 10px auto;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  justify-content: center;
-}
-
-
-
-.fa-music:hover {
-  color: #42b3f4;
-  cursor: pointer;
-}
-
-
-
-
-
-
-@media only screen and (max-width: 600px) {
-
-
-  .reveal {
-    width: 400px;
-  }
-
-  img {
-    dispay: block;
-    border: 1px solid #7f7526;
-    width: 90px;
-    height: 90px;
-  }
-
-  form {
-    width: 400px;
-  }
-
-  h1, h2, h3 {
-    padding: 0px 30px 0px 30px;
-  }
 }

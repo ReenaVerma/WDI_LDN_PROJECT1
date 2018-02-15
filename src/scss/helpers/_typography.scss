@@ -1,35 +1,44 @@
 
-
-p {
-  color: #fff;
-  text-align: center;
-  font-size: 19px;
-}
-
-h1, h2, h3 {
-  color: #fff;
+p, h1, h2, h3 {
+  color: $text-white;
   text-align: center;
   font-weight: lighter;
 }
 
 h1 {
   font-size: 50px;
-  text-shadow: 0 0 0.2em #42b3f4;
+  text-shadow: 0 0 0.2em $text-blue;
 }
 
 h2 {
-  padding: 0px;
-  margin: -20px;
-  color: yellow;
+  margin: -30px;
+  color: $text-yellow;
+  @media only screen and (max-width: 600px) {
+      padding-left: 20px;
+      padding-right: 20px;
+  }
 }
 
-.white {
-    color: #fff;
-}
 
 h3 {
-  padding: 0px;
   margin: 50px;
-  color: #42b3f4;
+  color: $text-blue;
   font-size: 40px;
+}
+
+button {
+  width: 300px;
+  border: 0px;
+  background: none;
+  color: $text-blue;
+  margin-top: 50px;
+  font-size: 40px;
+  cursor: pointer;
+  letter-spacing: 10px;
+  text-shadow: 0 0 0.2em $green;
+}
+
+.fa-music:hover {
+  color: $text-blue;
+  cursor: pointer;
 }

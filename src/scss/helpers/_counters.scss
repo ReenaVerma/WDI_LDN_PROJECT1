@@ -1,38 +1,18 @@
 
-#countdown {
+#countdown, #score, #boost{
+  border-style: dashed;
   padding-top: 20px;
-  color: #c4bd3a;
+  color: $text-yellow;
   font-size: 30px;
   font-weight: 100;
   margin: 0 auto;
   height: 100px;
   line-height: 50px;
-  text-shadow: 0 0 0.3em #c4bd3a;
+  text-shadow: 0 0 0.3em $text-yellow;
 }
 
-
-#score {
-  // border-left: 1px #e4e4e4;
-  // border-right: 1px #e4e4e4;
-  border-style: dashed;
-  padding-top: 20px;
-  color: #c4bd3a;
-  font-size: 30px;
-  margin: 0 auto;
-  height: 100px;
-  line-height: 50px;
-  text-shadow: 0 0 0.3em #c4bd3a;
-}
 
 #boost {
-  // border-left: 1px #e4e4e4;
-  // border-right: 1px #e4e4e4;
-  border-style: dashed;
-  padding-top: 20px;
-  color: #42b3f4;
-  font-size: 30px;
-  margin: 0 auto;
-  height: 100px;
-  line-height: 50px;
-  text-shadow: 0 0 0.3em #42b3f4;
+  color: $text-blue;
+  text-shadow: 0 0 0.3em $text-blue;
 }

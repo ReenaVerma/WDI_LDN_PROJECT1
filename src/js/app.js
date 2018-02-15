@@ -18,7 +18,7 @@ function init() {
   const $boost = $('#boost');
   const $endMessage = $('#endmessage');
   const $section3 = $('#section3');
-  const $parent = $('.parent');
+  // const $parent = $('.parent');
 
   const $playSound = $('#pointsSound');
   const $incorrectSound = $('#incorrectSound');
@@ -171,7 +171,7 @@ function init() {
 
   // ANSWER LOGIC, INCREMENTING POINTS/ROUND LOGIC
   function answerSubmit(e) {
-
+    game[round].sound.get(0).pause();
     e.preventDefault();
     console.log('submitted');
     const answer = userAnswer.val().toLowerCase();
@@ -247,8 +247,8 @@ function init() {
     round = 0;
     timeRemaining = 20;
     $images.empty().show();
-    $parent.css({ marginTop: '20px' });
-    $endMessage.addClass('hide').hide();
+    // $parent.css({ marginTop: '20px' });
+    $endMessage.addClass('hide');
     $section3.removeClass('hide');
     playGame();
   }

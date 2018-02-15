@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/js/app.js" charset="utf-8"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
 
   <!--  -->
@@ -18,15 +19,16 @@
   <audio id="matrixSound" src="sounds/the_matrix.mp3" type="audio/mpeg"></audio>
   <audio id="terminatorSound" src="sounds/terminator2_sound.mp3" type="audio/mpeg"></audio>
   <audio id="flashSound" src="sounds/flash_gordon_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="bladerunnerSound" src="sounds/bladerunner_sound.mp3" type="audio/mpeg"></audio>
 
   <main>
     <h1 class="animated pulse">sci-fi movie quiz</h1>
 
-    <!-- PLAY BUTTON -->
+    <!-- HOMEPAGE INTRO AND PLAY CLICK EVENT -->
     <div id="play">
-      <h2 class="white">Think you're an intergalactic movie buff?<h2>
+      <h2>Think you're an intergalactic movie buff?<h2>
       <img class="intro animated shake" src="images/alien_face.png" alt=""/>
-      <h2 class="white">See how many movies you can guess, <br />from the jumbled images!<h2>
+      <h2>See how many movies you can guess, <br />from the jumbled images!<h2>
       <button id="play" class="animated pulse infinite">play now</button>
     </div>
 
@@ -39,7 +41,7 @@
       <div class="parent" >
         <!-- WHERE END OF GAME RESULT APPEARS -->
         <div><h3 id="endmessage"></h3></div>
-        <!-- WHERE IMAGES APPEAR -->
+        <!-- WHERE SHUFFLED IMAGES APPEAR -->
         <div id="imagescontainer" class="hide reveal"></div>
       </div>
     </section>
@@ -58,11 +60,9 @@
     </section>
 
     <section class="section3" id="section3">
-
           <div class="box item" id='countdown'></div>
           <div class="box item" id='score'></div>
           <div id='boost' class="box item animated pulse infinite"></div>
-
     </section>
 
   </main>

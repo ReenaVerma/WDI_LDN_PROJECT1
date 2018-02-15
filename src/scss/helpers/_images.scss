@@ -1,0 +1,13 @@
+img {
+  dispay: block;
+  margin: 5px;
+  border: 1px solid $image-yellow;
+  width: 100px;
+  height: 100px;
+  @media only screen and (max-width: 600px) {
+
+      border: 1px solid $image-yellow;
+      width: 90px;
+      height: 90px;
+    }
+}

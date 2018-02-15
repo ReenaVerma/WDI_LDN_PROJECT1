@@ -2,12 +2,12 @@
 form {
   width: 600px;
   margin: 0px auto;
-  border: 0px solid #e4e4e4;
+  @media only screen and (max-width: 600px) {
+      width: 400px;
+    }
 }
 
-
 .inputcontainer {
-  border: 0px solid green;
   margin: 0 auto;
   display: flex;
   width: 400px;
@@ -16,12 +16,12 @@ form {
 input[type=text] {
   width: 370px;
   padding: 8px 12px;
-  border: 1px solid #e4e4e4;
+  border: 1px solid $light-grey;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   background-color: rgba(255,255,255, 0.2);
   cursor: text;
-  color: white;
+  color: $text-white;
   font-size: 25px;
   outline: none;
   height: 50px;
@@ -31,7 +31,7 @@ input[type=text] {
 
 input[type=submit] {
   width: 10%;
-  background-color: #efefef;
+  background-color: $light-grey;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }
