@@ -14,35 +14,35 @@ function init() {
   const $form = $('#form');
   const $score =  $('#score');
   const $placeholder =  $('#placeholdertext');
-  const useranswer = $('#usertext');
+  const userAnswer = $('#usertext');
   const $boost = $('#boost');
-  const $endmessage = $('#endmessage');
+  const $endMessage = $('#endmessage');
   const $section3 = $('#section3');
   const $parent = $('.parent');
 
-  const $playsound = $('#pointssound');
+  const $playSound = $('#pointsSound');
   const $incorrectSound = $('#incorrectSound');
-  const $yodasound = $('#yodasound');
-  const $alienssound = $('#alienssound');
-  const $idsound = $('#idsound');
-  const $etsound = $('#etsound');
-  const $matrixSound = $('#matrixsound');
-  const $terminatorsound = $('#terminatorsound');
-  const $flashsound = $('#flashsound');
+  const $yodaSound = $('#yodaSound');
+  const $aliensSound = $('#aliensSound');
+  const $idSound = $('#idSound');
+  const $etSound = $('#etSound');
+  const $matrixSound = $('#matrixSound');
+  const $terminatorSound = $('#terminatorSound');
+  const $flashSound = $('#flashSound');
 
   const game = [{
     answer: 'star wars',
     images: ['images/starwars_1.jpg', 'images/starwars_2.jpg', 'images/starwars_3.jpg', 'images/starwars_4.jpg', 'images/starwars_5.jpg', 'images/starwars_6.jpg', 'images/starwars_7.jpg', 'images/starwars_8.jpg', 'images/starwars_9.jpg', 'images/starwars_10.jpg', 'images/starwars_11.jpg', 'images/starwars_12.jpg'],
     level: 1,
     answerimage: ['images/darth.jpg'],
-    sound: $yodasound
+    sound: $yodaSound
 
   }, {
     answer: 'et',
     images: ['images/et1.jpg', 'images/et2.jpg', 'images/et3.jpg', 'images/et4.jpg', 'images/et5.jpg', 'images/et6.jpg', 'images/et7.jpg', 'images/et8.jpg', 'images/et9.jpg', 'images/et10.jpg', 'images/et11.jpg', 'images/et12.jpg' ],
     level: 2,
     answerimage: ['images/aliens1.jpg'],
-    sound: $etsound
+    sound: $etSound
 
   },{
     answer: 'the matrix',
@@ -56,38 +56,37 @@ function init() {
     images: ['images/flash1.jpg', 'images/flash2.jpg', 'images/flash3.jpg', 'images/flash4.jpg', 'images/flash5.jpg', 'images/flash6.jpg', 'images/flash7.jpg', 'images/flash8.jpg', 'images/flash9.jpg', 'images/flash10.jpg', 'images/flash11.jpg', 'images/flash12.jpg' ],
     level: 4,
     answerimage: ['images/aliens1.jpg'],
-    sound: $flashsound
+    sound: $flashSound
 
   },{
     answer: 'terminator 2',
     images: ['images/t1.jpg', 'images/t2.jpg', 'images/t3.jpg', 'images/t4.jpg', 'images/t5.jpg', 'images/t6.jpg', 'images/t7.jpg', 'images/t8.jpg', 'images/t9.jpg', 'images/t10.jpg', 'images/t11.jpg', 'images/t12.jpg' ],
     level: 5,
     answerimage: ['images/aliens1.jpg'],
-    sound: $terminatorsound
+    sound: $terminatorSound
 
   }, {
     answer: 'independence day',
     images: ['images/id1.jpg', 'images/id2.jpg', 'images/id3.jpg', 'images/id4.jpg', 'images/id5.jpg', 'images/id6.jpg', 'images/id7.jpg', 'images/id8.jpg', 'images/id9.jpg', 'images/id10.jpg', 'images/id11.jpg', 'images/id12.jpg'],
     level: 7,
     answerimage: ['images/id1.jpg'],
-    sound: $idsound
+    sound: $idSound
   }, {
     answer: 'aliens',
     images: ['images/alien1.jpg', 'images/alien2.jpg', 'images/alien3.jpg', 'images/alien4.jpg', 'images/alien5.jpg', 'images/alien6.jpg', 'images/alien7.jpg', 'images/alien8.jpg', 'images/alien9.jpg', 'images/alien10.jpg', 'images/alien11.jpg', 'images/alien12.jpg'],
     level: 6,
     answerimage: ['images/aliens1.jpg'],
-    sound: $alienssound
+    sound: $aliensSound
 
   }];
 
-  // add event listeners section
-  // CLICK EVENT WHEN YOU PRESS PLAY
-  // TIMER STARTS TO COUNTSDOWN
-  $play.on('click', playGame);
-  $boost.on('click', boostAnimation);
+  // EVENT LISTENERS SECTION:
+  $play.on('click', playGame);  // CLICK EVENT WHEN YOU PRESS PLAY
+  $form.on('submit', answerSubmit);  // CLICK EVENT FOR ANSWER SUBMISSION
+  $boost.on('click', boostAnimation); //CLICK EVENT FOR BOOST SHAKE
 
-  // functions section
 
+  // FUNCTIONS SECTION:
   // THIS FUNCTION SHUFFLES THE SELECTION OF ARRAY IMAGES
   function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -107,11 +106,12 @@ function init() {
   $boost.hide();
   $section3.addClass('hide');
 
-
+  // COUNTDOWN LOGIC
   function playGame() {
     if (!timerOn) {
       timerOn = true;
       clock = setInterval(countDownLogic, 1000);
+      $placeholder.html('Your 60 seconds start NOW!!!').addClass('animated flash');
 
       // APPLY SHUFFLE FUNCTION TO ARRAY OF IMAGES
       const imagesCopy = game[round].images.slice(0);
@@ -130,6 +130,7 @@ function init() {
       $images.fadeIn(1000);
       $form.fadeIn(1000);
       $section3.removeClass('hide').addClass('animated fadeInUpBig');
+      $countdown.fadeIn(2000);
       $score.html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: 0').fadeIn(2000);
       $boost.html('<i class="fa fa-music" aria-hidden="true"></i>' + 'replay sound clip!').fadeIn(2000);
     }
@@ -143,15 +144,13 @@ function init() {
     });
   }
 
-  // FUNCTION FOR COUNTDOWN LOGIC
+  // FUNCTION FOR COUNTDOWN LOGIC AND ACTIONS WHICH OCCUR WITHIN
   function countDownLogic() {
 
     // IF TIME IS GREATER THAN 0
     if (timeRemaining > 0) {
       --timeRemaining;
-      console.log('start timer');
-
-      $countdown.html('<i class="fa fa-clock-o" aria-hidden="true"></i>' + 'seconds: ' + timeRemaining).fadeIn(2000);
+      $countdown.html('<i class="fa fa-clock-o" aria-hidden="true"></i>' + 'seconds: ' + timeRemaining).fadeIn(1000);
 
       // UNHIDE/REVEAL QUIZ IMAGES AND FORM
       $images.removeClass('hide');
@@ -161,7 +160,6 @@ function init() {
       if (timeRemaining === 0) {
         console.log('time stops');
         $form.addClass('disabled');
-        // FUNCTION TO RUN END OF GAME CONTENT
         ending();
       }
     } else {
@@ -170,13 +168,13 @@ function init() {
     }
   }
 
-  // $play.on('click', playGame);
-  // CLICK EVENT FOR ANSWER SUBMISSION
-  $form.on('submit', (e) => {
+
+  // ANSWER LOGIC, INCREMENTING POINTS/ROUND LOGIC
+  function answerSubmit(e) {
 
     e.preventDefault();
     console.log('submitted');
-    const answer = useranswer.val().toLowerCase();
+    const answer = userAnswer.val().toLowerCase();
 
     let str = (game[round].answer);
     str = str.toUpperCase();
@@ -193,13 +191,18 @@ function init() {
 
       // UPDATE THE SCORE ON SCREEN AND FLASH/PLAY SOUND
       $score.html('<i class="fa fa-rocket" aria-hidden="true"></i>' + 'score: ' + totalpoints).addClass('animated flash');
-      $playsound.get(0).play();
+      $playSound.get(0).play();
       // CLEAR THE ANSWER FORM
-      $(useranswer).val('');
+      $(userAnswer).val('');
 
       // PLAY THE NEXT ROUND OF MOVIES/IMAGES
       round += 1;
       $form.fadeOut(3000);
+
+      // PLAY NEXT ROUND OF SOUNDS
+      setTimeout(function () {
+        game[round].sound.get(0).play(0);
+      }, 3000);
 
       // CLEAR THE IMAGES CONTAINER AND SHUFFLE NEXT ROUND OF IMAGES
       $images.fadeOut(3000, () => {
@@ -214,17 +217,16 @@ function init() {
       $placeholder.html('epic fail!  try again.').addClass('animated shake');
       $incorrectSound.get(0).play();
     }
-  });
+  }
 
 
   // END OF GAME FUNCTION
   function ending() {
-    console.log('game over!');
-
-    $endmessage.addClass('animated fadeInUp').html('You scored ' + totalpoints + '/10 points!' + '<br>' + 'Not bad....for a human.' + '<br>').fadeIn(1000);
+    // console.log('game over!');
+    $endMessage.addClass('animated fadeInUp').html('You scored ' + totalpoints + '/10 points!' + '<br>' + 'Not bad....for a human.' + '<br>').fadeIn(1000);
 
     const reset = $('<button></button>').text('play again').addClass('animated pulse infinite');
-    $endmessage.append(reset);
+    $endMessage.append(reset);
 
     $placeholder.addClass('hide');
     $section3.addClass('hide');
@@ -237,6 +239,7 @@ function init() {
     reset.on('click', resetGame);
   }
 
+  // RESET GAME FUNCTION
   function resetGame() {
     $placeholder.html('').css({margin: '0'}).removeClass('hide');
     $form.removeClass('disabled');
@@ -245,42 +248,10 @@ function init() {
     timeRemaining = 20;
     $images.empty().show();
     $parent.css({ marginTop: '20px' });
-    $endmessage.addClass('hide').hide();
+    $endMessage.addClass('hide').hide();
     $section3.removeClass('hide');
     playGame();
   }
 
-
 }
-
 $(init);
-
-// Build basic html structure
-// Pull through variables
-
-// Images sit within grid
-// Images have a disort class
-
-// When 'play' load page with images
-// Loaded images sliced
-// Page loads with r.
-// Page loads with points score.
-
-// When user types answer, text is parsed as a string.
-// compare the output with the answer.
-// Case insensitive
-
-
-// Level one.  Simple guess vs r game.
-
-// Level two.  The tiles start to drop off and deducts 1pt per tile.
-
-
-
-
-//IMAGE RANDOMISATION  // function gameplay() {
-//  //  //   const level1 = ['image1.jpg', 'image2.jpg'];  //   // const level2 = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg'];
-//
-//   for (var i = 0; i < level1.length; i++) {  //     $('<img src="images/' + level1[Math.floor(Math.random() * level1.length)] + '">').appendTo($images);  //     $('<li/>').appendTo($images);
-//   }  //
-// }

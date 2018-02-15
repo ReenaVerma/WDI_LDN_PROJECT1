@@ -11,15 +11,15 @@
   </head>
 
   <!--  -->
-  <audio id="pointssound" src="sounds/points_score.wav" type="audio/mpeg"></audio>
+  <audio id="pointsSound" src="sounds/points_score.wav" type="audio/mpeg"></audio>
   <audio id="incorrectSound" src="sounds/incorrect_sound.wav" type="audio/mpeg"></audio>
-  <audio id="yodasound" src="sounds/star_wars_sound.mp3" type="audio/mpeg"></audio>
-  <audio id="alienssound" src="sounds/aliens_sound.mp3" type="audio/mpeg"></audio>
-  <audio id="idsound" src="sounds/id_sound.mp3" type="audio/mpeg"></audio>
-  <audio id="etsound" src="sounds/ET_sound.mp3" type="audio/mpeg"></audio>
-  <audio id="matrixsound" src="sounds/the_matrix.mp3" type="audio/mpeg"></audio>
-  <audio id="terminatorsound" src="sounds/terminator2_sound.mp3" type="audio/mpeg"></audio>
-  <audio id="flashsound" src="sounds/flash_gordon_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="yodaSound" src="sounds/star_wars_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="aliensSound" src="sounds/aliens_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="idSound" src="sounds/id_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="etSound" src="sounds/ET_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="matrixSound" src="sounds/the_matrix.mp3" type="audio/mpeg"></audio>
+  <audio id="terminatorSound" src="sounds/terminator2_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="flashSound" src="sounds/flash_gordon_sound.mp3" type="audio/mpeg"></audio>
 
   <main>
     <h1 class="animated pulse">sci-fi movie quiz</h1>
@@ -32,32 +32,29 @@
       <button id="play" class="animated pulse infinite">play now</button>
     </div>
 
+    <!-- WHERE RESULTS/CORRECT ANSWER APPEARS -->
     <div>
       <h2 id='placeholdertext'></h2>
     </div>
 
     <section class="section1">
-
       <div class="parent" >
-        <div>
-          <h3 id="endmessage"></h3>
-        </div>
-        <div id="result"></div>
+        <!-- WHERE END OF GAME RESULT APPEARS -->
+        <div><h3 id="endmessage"></h3></div>
+        <!-- WHERE IMAGES APPEAR -->
         <div id="imagescontainer" class="hide reveal"></div>
       </div>
-
     </section>
 
-    <section class="desktop section2" id="section2">
+    <!-- ENTIRE SECTION FOR FORM -->
+    <section class="section2" id="section2">
         <div class="parent">
           <form id="form" class="hide">
-
             <p>enter your guess below and hit return!</p>
-
               <div class="inputcontainer">
-                <input id="usertext" type="text" autocomplete="off"/><input type="submit" id="submit" value="go!"/>
+                <input id="usertext" type="text" autocomplete="off"/>
+                <input type="submit" id="submit" value="go!"/>
               </div>
-
           </form>
         </div>
     </section>

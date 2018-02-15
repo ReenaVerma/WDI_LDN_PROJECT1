@@ -13,7 +13,7 @@
 
 body {
   font-family: 'Source Code Pro', monospace;
-  background-image: url('https://media3.giphy.com/media/aRZ4vTsHnyW6A/giphy.gif');
+  background-image: url('../../images/stars.gif');
   background-repeat: repeat;
 }
 
@@ -98,7 +98,6 @@ display: flex;
 flex-direction: row;
 margin-top: 20px;
 padding-top: 0px;
-padding-bottom: 20px;
 background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(0, 0, 0, 0.7)));
 }
 
