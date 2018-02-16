@@ -225,7 +225,7 @@ function init() {
       // CLEAR THE ANSWER FORM
       $(userAnswer).val('');
 
-      if (totalpoints === 2) {
+      if (totalpoints === 10) {
         console.log('play win');
         return ending();
       }
