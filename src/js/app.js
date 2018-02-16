@@ -82,7 +82,7 @@ function init() {
     level: 8,
     sound: $jurassicparkSound
   }, {
-    answer: 'bladerunner',
+    answer: 'blade runner',
     images: ['images/br1.jpg', 'images/br2.jpg', 'images/br3.jpg', 'images/br4.jpg', 'images/br5.jpg', 'images/br6.jpg', 'images/br7.jpg', 'images/br8.jpg', 'images/br9.jpg', 'images/br10.jpg', 'images/br11.jpg', 'images/br12.jpg'],
     level: 9,
     sound: $bladerunnerSound
