@@ -60,6 +60,15 @@ background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 
   border: 0px;
 }
 
+#yodaImage {
+  height: 270px;
+  width: 250px;
+  margin-top: 50px;
+  border: 0px;
+  border-radius: 100%;
+
+}
+
 .box {
   border: 0px dashed $light-grey;
   width: 400px;
