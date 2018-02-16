@@ -3,7 +3,8 @@ form {
   width: 600px;
   margin: 0px auto;
   @media only screen and (max-width: 600px) {
-      width: 400px;
+      width: 370px;
+      border: 0px solid white;
     }
 }
 
@@ -11,10 +12,14 @@ form {
   margin: 0 auto;
   display: flex;
   width: 400px;
+  border: 0px solid red;
+  @media only screen and (max-width: 600px) {
+    width: 370px;
+  }
 }
 
 input[type=text] {
-  width: 370px;
+  width: 90%;
   padding: 8px 12px;
   border: 1px solid $light-grey;
   border-top-left-radius: 5px;

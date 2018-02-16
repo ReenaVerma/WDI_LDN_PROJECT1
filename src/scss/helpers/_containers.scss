@@ -48,6 +48,10 @@ background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 
 .reveal {
   margin: 0 auto;
   width: 450px;
+  @media only screen and (max-width: 600px) {
+    width: 370px;
+    border: 0px solid white;
+  }
 }
 
 
