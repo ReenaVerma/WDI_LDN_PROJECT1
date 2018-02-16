@@ -117,6 +117,15 @@ function init() {
     return array;
   }
 
+  function newShuffle() {
+    $images.fadeOut(3000, () => {
+      $images.empty();
+      shuffle(game[round].images.slice(0)).forEach(image => {
+        $images.append(`<img src="${image}" alt"">`).fadeIn(1000);
+        $form.fadeIn(1000);
+      });
+    });
+  }
   $boost.hide();
   $section3.addClass('hide');
 
@@ -149,6 +158,13 @@ function init() {
       $boost.html('<i class="fa fa-music" aria-hidden="true"></i>' + 'replay sound clip!').fadeIn(2000);
     }
   }
+  // function winGame() {
+  //   game[round].sound.get(0).pause();
+  //   $endMessage.addClass('animated fadeInUp').html('YOU GOT THEM ALL RIGHT! ' + totalpoints + '/10 points!' + '<br>' + 'DONE WELL...YOU HAVE...' + '<br>').fadeIn(1000);
+  //
+  //   const yodaImage = $('<img id="yodaImage" src="images/yoda_crop.jpg" />').addClass('animated shake');
+  //   $endMessage.append(yodaImage);
+  // }
 
   // FUNCTION FOR BOOST BUTTON
   function boostAnimation() {
@@ -209,6 +225,10 @@ function init() {
       // CLEAR THE ANSWER FORM
       $(userAnswer).val('');
 
+      if (totalpoints === 2) {
+        console.log('play win');
+        return ending();
+      }
       // PLAY THE NEXT ROUND OF MOVIES/IMAGES
       round += 1;
       $form.fadeOut(3000);
@@ -220,30 +240,27 @@ function init() {
 
       // CLEAR THE IMAGES CONTAINER AND SHUFFLE NEXT ROUND OF IMAGES
       // ANONYMOUS FUNCTION - STRUGGLED TO BREAK THIS DOWN INTO SEPERATE FUNCTIONS, WHICH WORK OUTSIDE OF THIS ONE
-      $images.fadeOut(3000, () => {
-        $images.empty();
-        shuffle(game[round].images.slice(0)).forEach(image => {
-          $images.append(`<img src="${image}" alt"">`).fadeIn(1000);
-          $form.fadeIn(1000);
-        });
-      });
+
+
+      newShuffle();
+
 
     } else {
       $placeholder.html('epic fail!  try again.').addClass('animated shake');
       $incorrectSound.get(0).play();
     }
+
   }
 
 
   // END OF GAME FUNCTION
   function ending() {
-    // console.log('game over!');
-    game[round].sound.get(0).pause();
     $endMessage.addClass('animated fadeInUp').html('You scored ' + totalpoints + '/10 points!' + '<br>' + 'DONE WELL...YOU HAVE...' + '<br>').fadeIn(1000);
 
     const yodaImage = $('<img id="yodaImage" src="images/yoda_crop.jpg" />').addClass('animated shake');
     $endMessage.append(yodaImage);
 
+    // added this as a quick win
     const linebreak = $('<br>');
     $endMessage.append(linebreak);
 
@@ -251,10 +268,10 @@ function init() {
     $endMessage.append(reset);
 
 
-
+    game[round].sound.get(0).pause();
     $placeholder.addClass('hide');
     $section3.addClass('hide');
-    $images.fadeOut(1000);
+    $images.hide();
     $form.fadeOut(1000);
     $countdown.fadeOut(1000);
     $score.fadeOut(1000);
@@ -265,16 +282,22 @@ function init() {
 
   // RESET GAME FUNCTION
   function resetGame() {
-    $placeholder.html('').css({margin: '0'}).removeClass('hide');
-    $form.removeClass('disabled');
+
     totalpoints = 0;
     round = 0;
     timeRemaining = 60;
-    $images.empty().show();
-    // $parent.css({ marginTop: '20px' });
+    newShuffle();
+    game[round].sound.get(0).play();
+
+    $placeholder.css({margin: '0'}).empty().fadeIn(1000);
     $endMessage.addClass('hide');
+    $form.fadeIn('1000');
     $section3.removeClass('hide');
+    $countdown.fadeIn(1000);
+    $score.fadeIn(1000);
+    $boost.fadeIn(1000);
     playGame();
+    // playGame();
   }
 
 }
