@@ -1,4 +1,4 @@
-let timeRemaining = 120;
+let timeRemaining = 60;
 let timerOn = false;
 let totalpoints = 0;
 let clock = null;
@@ -219,14 +219,15 @@ function init() {
       }, 3000);
 
       // CLEAR THE IMAGES CONTAINER AND SHUFFLE NEXT ROUND OF IMAGES
+      // ANONYMOUS FUNCTION - STRUGGLED TO BREAK THIS DOWN INTO SEPERATE FUNCTIONS, WHICH WORK OUTSIDE OF THIS ONE
       $images.fadeOut(3000, () => {
         $images.empty();
         shuffle(game[round].images.slice(0)).forEach(image => {
           $images.append(`<img src="${image}" alt"">`).fadeIn(1000);
           $form.fadeIn(1000);
         });
-
       });
+
     } else {
       $placeholder.html('epic fail!  try again.').addClass('animated shake');
       $incorrectSound.get(0).play();
