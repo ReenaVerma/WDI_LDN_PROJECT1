@@ -57,3 +57,12 @@ Further enhancements I'd make to the game would be, to add some logic/new conten
 I'd also like to deduct points from the total score, if a sound clip is replayed.
 
 And lastly, a leaderboard would also be nice, to compare scores...
+
+###### Setup instructions:
+<ul>
+<li>Clone or download the repo. </li>
+<li>Install dependencies with yarn install or npm install</li>
+<li>Launch the app with gulp.</li>
+</ul>
+
+NB: You will need to have installed gulp-cli globally
