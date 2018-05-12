@@ -6,7 +6,7 @@ let round = 0;
 
 function init() {
 
-  console.log(' loaded');
+  console.log('js loaded');
 
   const $intro = $('#intro');
   const $play = $('#play');
@@ -19,11 +19,7 @@ function init() {
   const $boost = $('#boost');
   const $endMessage = $('#endmessage');
   const $section3 = $('#section3');
-  // const $section2 = $('#section2');
   const $section1 = $('#section1');
-  // const $parent = $('#parent');
-
-  // const $parent = $('.parent');
 
   const $playSound = $('#pointsSound');
   const $incorrectSound = $('#incorrectSound');
@@ -104,7 +100,6 @@ function init() {
   $boost.on('click', boostAnimation); //CLICK EVENT FOR BOOST SHAKE
 
 
-  // FUNCTIONS SECTION:
   // THIS FUNCTION SHUFFLES THE SELECTION OF ARRAY IMAGES
   function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -121,9 +116,7 @@ function init() {
     return array;
   }
 
-
-  // THIS FUNCTION DISPLAYS IMAGES WITH FADE
-
+  // THIS FUNCTION APPLIES THE SHUFFLE FUNCTION, TO FADE IN/OUT IMAGES/ROUNDS
   function newShuffle() {
     $images.fadeOut(3000, () => {
       $images.empty();
@@ -134,35 +127,25 @@ function init() {
     });
   }
 
-
   $boost.hide();
   $section3.addClass('hide');
 
-
-  // GAME ROUND LOGIC
+  // FUNCTION TO LOAD THE GAME AND ROUND OF IMAGES
   function playGame() {
-
     if (!timerOn) {
-      // timerOn = true;
       clock = setInterval(countDownLogic, 1000);
       $placeholder.html('Your 60 seconds start NOW!!!').addClass('animated flash');
-
       // APPLY SHUFFLE FUNCTION TO ARRAY OF IMAGES
       const imagesCopy = game[round].images.slice(0);
-      // shuffle(imagesCopy);
-
       // PLAY SOUND ON LEVEL LOAD
       game[round].sound.get(0).play();
-
-      // LOOP THROUGH THE IMAGES
+      // LOOP THROUGH THE FIRST AND SUBSEQUENT SET OF ROUNDS/IMAGES
       imagesCopy.forEach(image => {
         $images.append(`<img src="${image}" alt"">`);
       });
-
-      //HIDE PLAY CTA
+      //ADDING/UNHIDING DIVS
       $intro.hide();
       $form.removeClass('hide');
-      // FADE INITIAL DIVS IN AND OUT ON PLAY
       $images.fadeIn(1000);
       $form.fadeIn(1000);
       $section3.removeClass('hide').addClass('animated fadeInUpBig');
@@ -182,35 +165,23 @@ function init() {
 
   // FUNCTION FOR COUNTDOWN LOGIC AND ACTIONS WHICH OCCUR WITHIN
   function countDownLogic() {
-
-    // IF TIME IS GREATER THAN 0
     if (timeRemaining > 0) {
       --timeRemaining;
       $countdown.html('<i class="fa fa-clock-o" aria-hidden="true"></i>' + 'seconds: ' + timeRemaining).fadeIn(1000);
 
-      // UNHIDE/REVEAL QUIZ IMAGES AND FORM
-      // $images.removeClass('hide');
-      // $form.fadeIn(1000);
-
-
-
-      // IF COUNTDOWN HITS ZERO ADD CLASS
+      // IF COUNTDOWN HITS ZERO
       if (timeRemaining === 0) {
-
-        // removing images sound and form at the end of timeout
+        // REMOVING IMAGES, SOUND AND FORM AT THE END OF TIMOUT
         $images.addClass('hide');
         $form.addClass('hide');
         (game[round].sound).get(0).pause(true);
         return ending();
-
       }
-
     } else {
       timerOn = false;
       clearInterval(clock);
     }
   }
-
 
   // ANSWER LOGIC, INCREMENTING POINTS/ROUND LOGIC
   function answerSubmit(e) {
@@ -237,7 +208,6 @@ function init() {
       $playSound.get(0).play();
       // CLEAR THE ANSWER FORM
       $(userAnswer).val('');
-
       round += 1;
       $form.fadeOut(3000);
 
@@ -246,8 +216,7 @@ function init() {
         game[round].sound.get(0).play(0);
       }, 3000);
 
-      // CLEAR THE IMAGES CONTAINER AND SHUFFLE NEXT ROUND OF IMAGES
-      // ANONYMOUS FUNCTION - STRUGGLED TO BREAK THIS DOWN INTO SEPERATE FUNCTIONS, WHICH WORK OUTSIDE OF THIS ONE
+      // APPLY SHUFFLE NEXT ROUND OF IMAGES
       newShuffle();
 
     } else if (totalpoints === 10) {
@@ -262,9 +231,7 @@ function init() {
       $placeholder.html('epic fail!  try again.').addClass('animated shake');
       $incorrectSound.get(0).play();
     }
-
   }
-
 
   // END OF GAME FUNCTION
   function ending() {
@@ -297,14 +264,12 @@ function init() {
 
   // RESET GAME FUNCTION
   function resetGame() {
-
     totalpoints = 0;
     round = 0;
     timeRemaining = 60;
     newShuffle();
     game[round].sound.get(0).play();
     location.reload();
-
     // $placeholder.css({margin: '0'}).empty().fadeIn(1000);
     // $endMessage.addClass('hide');
     // $form.fadeIn('1000');
@@ -314,8 +279,6 @@ function init() {
     // $score.fadeIn(1000);
     // $boost.fadeIn(1000);
     // playGame();
-
   }
-
 }
 $(init);
