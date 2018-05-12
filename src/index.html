@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>WDI Project 1: Sci-Fi Javascript Game</title>
+    <title>WDI Project 1: Sci-Fi Game</title>
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/js/app.js" charset="utf-8"></script>
@@ -27,7 +27,7 @@
     <h1 class="animated pulse">sci-fi movie quiz</h1>
 
     <!-- HOMEPAGE INTRO AND PLAY CLICK EVENT -->
-    <div id="play">
+    <div id="intro">
       <h2>Think you're an intergalactic movie buff?<h2>
       <img class="intro animated shake" src="images/alien_face.png" alt=""/>
       <h2>See how many movies you can guess, <br />from the jumbled images!<h2>
@@ -39,13 +39,13 @@
       <h2 id='placeholdertext'></h2>
     </div>
 
+    <!-- WHERE END OF GAME RESULT APPEARS -->
+    <div><h3 id="endmessage"></h3></div>
+
     <section class="section1">
       <div class="parent" >
-        <!-- WHERE END OF GAME RESULT APPEARS -->
-        <div><h3 id="endmessage"></h3>
-        </div>
         <!-- WHERE SHUFFLED IMAGES APPEAR -->
-        <div id="imagescontainer" class="hide reveal"></div>
+        <div id="imagescontainer" class="reveal"></div>
       </div>
     </section>
 

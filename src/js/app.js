@@ -1,4 +1,4 @@
-let timeRemaining = 60;
+let timeRemaining = 10;
 let timerOn = false;
 let totalpoints = 0;
 let clock = null;
@@ -6,8 +6,9 @@ let round = 0;
 
 function init() {
 
-  console.log('hello');
+  console.log(' loaded');
 
+  const $intro = $('#intro');
   const $play = $('#play');
   const $countdown = $('#countdown');
   const $images = $('#imagescontainer');
@@ -18,6 +19,9 @@ function init() {
   const $boost = $('#boost');
   const $endMessage = $('#endmessage');
   const $section3 = $('#section3');
+  // const $section2 = $('#section2');
+  const $section1 = $('#section1');
+  // const $parent = $('#parent');
 
   // const $parent = $('.parent');
 
@@ -117,6 +121,9 @@ function init() {
     return array;
   }
 
+
+  // THIS FUNCTION DISPLAYS IMAGES WITH FADE
+
   function newShuffle() {
     $images.fadeOut(3000, () => {
       $images.empty();
@@ -126,19 +133,24 @@ function init() {
       });
     });
   }
+
+
   $boost.hide();
   $section3.addClass('hide');
 
-  // COUNTDOWN LOGIC
+
+  // GAME ROUND LOGIC
   function playGame() {
+
     if (!timerOn) {
-      timerOn = true;
+      // timerOn = true;
       clock = setInterval(countDownLogic, 1000);
       $placeholder.html('Your 60 seconds start NOW!!!').addClass('animated flash');
 
       // APPLY SHUFFLE FUNCTION TO ARRAY OF IMAGES
       const imagesCopy = game[round].images.slice(0);
-      shuffle(imagesCopy);
+      // shuffle(imagesCopy);
+
       // PLAY SOUND ON LEVEL LOAD
       game[round].sound.get(0).play();
 
@@ -148,7 +160,8 @@ function init() {
       });
 
       //HIDE PLAY CTA
-      $play.addClass('hide');
+      $intro.hide();
+      $form.removeClass('hide');
       // FADE INITIAL DIVS IN AND OUT ON PLAY
       $images.fadeIn(1000);
       $form.fadeIn(1000);
@@ -158,13 +171,6 @@ function init() {
       $boost.html('<i class="fa fa-music" aria-hidden="true"></i>' + 'replay sound clip!').fadeIn(2000);
     }
   }
-  // function winGame() {
-  //   game[round].sound.get(0).pause();
-  //   $endMessage.addClass('animated fadeInUp').html('YOU GOT THEM ALL RIGHT! ' + totalpoints + '/10 points!' + '<br>' + 'DONE WELL...YOU HAVE...' + '<br>').fadeIn(1000);
-  //
-  //   const yodaImage = $('<img id="yodaImage" src="images/yoda_crop.jpg" />').addClass('animated shake');
-  //   $endMessage.append(yodaImage);
-  // }
 
   // FUNCTION FOR BOOST BUTTON
   function boostAnimation() {
@@ -183,13 +189,20 @@ function init() {
       $countdown.html('<i class="fa fa-clock-o" aria-hidden="true"></i>' + 'seconds: ' + timeRemaining).fadeIn(1000);
 
       // UNHIDE/REVEAL QUIZ IMAGES AND FORM
-      $images.removeClass('hide');
-      $form.removeClass('hide');
+      // $images.removeClass('hide');
+      // $form.fadeIn(1000);
+
+
 
       // IF COUNTDOWN HITS ZERO ADD CLASS
       if (timeRemaining === 0) {
-        $form.addClass('disabled');
-        ending();
+
+        // removing images sound and form at the end of timeout
+        $images.addClass('hide');
+        $form.addClass('hide');
+        (game[round].sound).get(0).pause(true);
+        return ending();
+
       }
 
     } else {
@@ -225,11 +238,6 @@ function init() {
       // CLEAR THE ANSWER FORM
       $(userAnswer).val('');
 
-      if (totalpoints === 10) {
-        console.log('play win');
-        return ending();
-      }
-      // PLAY THE NEXT ROUND OF MOVIES/IMAGES
       round += 1;
       $form.fadeOut(3000);
 
@@ -240,11 +248,16 @@ function init() {
 
       // CLEAR THE IMAGES CONTAINER AND SHUFFLE NEXT ROUND OF IMAGES
       // ANONYMOUS FUNCTION - STRUGGLED TO BREAK THIS DOWN INTO SEPERATE FUNCTIONS, WHICH WORK OUTSIDE OF THIS ONE
-
-
       newShuffle();
 
-
+    } else if (totalpoints === 10) {
+      console.log('play win');
+      $images.empty();
+      return ending();
+    } else if (timeRemaining === 0 && totalpoints <= 10 ) {
+      $images.empty();
+      $section1.addClass('hide');
+      return ending();
     } else {
       $placeholder.html('epic fail!  try again.').addClass('animated shake');
       $incorrectSound.get(0).play();
@@ -255,6 +268,7 @@ function init() {
 
   // END OF GAME FUNCTION
   function ending() {
+
     $endMessage.addClass('animated fadeInUp').html('You scored ' + totalpoints + '/10 points!' + '<br>' + 'DONE WELL...YOU HAVE...' + '<br>').fadeIn(1000);
 
     const yodaImage = $('<img id="yodaImage" src="images/yoda_crop.jpg" />').addClass('animated shake');
@@ -271,6 +285,7 @@ function init() {
     game[round].sound.get(0).pause();
     $placeholder.addClass('hide');
     $section3.addClass('hide');
+    // $images.empty();
     $images.hide();
     $form.fadeOut(1000);
     $countdown.fadeOut(1000);
@@ -285,19 +300,21 @@ function init() {
 
     totalpoints = 0;
     round = 0;
-    timeRemaining = 60;
+    timeRemaining = 10;
     newShuffle();
     game[round].sound.get(0).play();
+    location.reload();
 
-    $placeholder.css({margin: '0'}).empty().fadeIn(1000);
-    $endMessage.addClass('hide');
-    $form.fadeIn('1000');
-    $section3.removeClass('hide');
-    $countdown.fadeIn(1000);
-    $score.fadeIn(1000);
-    $boost.fadeIn(1000);
-    playGame();
+    // $placeholder.css({margin: '0'}).empty().fadeIn(1000);
+    // $endMessage.addClass('hide');
+    // $form.fadeIn('1000');
+    // $section3.removeClass('hide');
+    // $form.removeClass('disabled');
+    // $countdown.fadeIn(1000);
+    // $score.fadeIn(1000);
+    // $boost.fadeIn(1000);
     // playGame();
+
   }
 
 }

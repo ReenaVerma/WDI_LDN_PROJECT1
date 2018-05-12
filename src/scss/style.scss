@@ -17,9 +17,8 @@ $green: #8F7;
 @import "helpers/_containers";
 @import "helpers/_images";
 
-
 .hide {
-  display: none;
+  display: none !important;
 }
 
 
