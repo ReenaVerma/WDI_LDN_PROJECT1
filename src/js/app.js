@@ -1,4 +1,4 @@
-let timeRemaining = 10;
+let timeRemaining = 60;
 let timerOn = false;
 let totalpoints = 0;
 let clock = null;
@@ -300,7 +300,7 @@ function init() {
 
     totalpoints = 0;
     round = 0;
-    timeRemaining = 10;
+    timeRemaining = 60;
     newShuffle();
     game[round].sound.get(0).play();
     location.reload();
