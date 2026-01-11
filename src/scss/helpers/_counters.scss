@@ -1,18 +1,19 @@
+@use "./variables" as vars;
 
 #countdown, #score, #boost{
   border-style: dashed;
   padding-top: 20px;
-  color: $text-yellow;
+  color: vars.$text-yellow;
   font-size: 30px;
   font-weight: 100;
   margin: 0 auto;
   height: 100px;
   line-height: 50px;
-  text-shadow: 0 0 0.3em $text-yellow;
+  text-shadow: 0 0 0.3em vars.$text-yellow;
 }
 
 
 #boost {
-  color: $text-blue;
-  text-shadow: 0 0 0.3em $text-blue;
+  color: vars.$text-blue;
+  text-shadow: 0 0 0.3em vars.$text-blue;
 }

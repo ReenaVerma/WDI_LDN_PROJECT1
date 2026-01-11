@@ -1,26 +1,18 @@
-$text-blue: #42b3f4;
-$text-yellow: #c4bd3a;
-$text-white: #ffffff;
-$image-yellow: #7f7526;
-$light-grey: #e4e4e4;
-$darker-grey: #2c2d30;
-$green: #8F7;
-
+@use "helpers/animate";
+@use "helpers/typography";
+@use "helpers/form";
+@use "helpers/counters";
+@use "helpers/containers";
+@use "helpers/images";
+@use "helpers/variables";
 
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 
-@import "helpers/_animate";
-@import "helpers/_typography";
-@import "helpers/_form";
-@import "helpers/_counters";
-@import "helpers/_containers";
-@import "helpers/_images";
-
+// Your CSS rules
 .hide {
   display: none !important;
 }
-
 
 .disabled{
     pointer-events:none;

@@ -1,12 +1,14 @@
+@use "./variables" as vars;
+
 img {
-  dispay: block;
+  // display: block;
   margin: 5px;
-  border: 1px solid $image-yellow;
+  border: 1px solid vars.$image-yellow;
   width: 100px;
   height: 100px;
   @media only screen and (max-width: 600px) {
 
-      border: 1px solid $image-yellow;
+      border: 1px solid vars.$image-yellow;
       width: 80px;
       height: 80px;
     }

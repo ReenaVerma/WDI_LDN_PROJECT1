@@ -1,97 +1,123 @@
 const pump = require('pump');
 const gulp = require('gulp');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const sourcemaps = require('gulp-sourcemaps');
 const del = require('del');
 const browserSync = require('browser-sync').create();
 const gulpIf = require('gulp-if');
+const { series, parallel } = gulp;
 
-gulp.task('clean:css', () => {
+let production = false;
+
+/* ================= CLEAN TASKS ================= */
+
+function cleanCss() {
   return del(['public/css']);
-});
+}
 
-gulp.task('clean:js', () => {
+function cleanJs() {
   return del(['public/js']);
-});
+}
 
-gulp.task('clean:html', () => {
+function cleanHtml() {
   return del(['public/index.html']);
-});
+}
 
-gulp.task('clean:fonts', () => {
+function cleanFonts() {
   return del(['public/fonts/**']);
-});
+}
 
-gulp.task('clean:images', () => {
+function cleanImages() {
   return del(['public/images/**']);
-});
+}
 
-gulp.task('clean:sounds', () => {
+function cleanSounds() {
   return del(['public/sounds/**']);
-});
+}
 
-gulp.task('fonts', ['clean:fonts'], () => {
+/* ================= COPY TASKS ================= */
+
+function fonts() {
   return gulp.src('src/fonts/**/*')
     .pipe(gulp.dest('public/fonts'));
-});
+}
 
-gulp.task('images', ['clean:images'], () => {
+function images() {
   return gulp.src('src/images/**/*')
     .pipe(gulp.dest('public/images'));
-});
+}
 
-gulp.task('sounds', ['clean:sounds'], () => {
+function sounds() {
   return gulp.src('src/sounds/**/*')
     .pipe(gulp.dest('public/sounds'));
-});
+}
 
-gulp.task('html', ['clean:html'], () => {
+function html() {
   return gulp.src('src/index.html')
     .pipe(gulp.dest('public/'));
-});
+}
 
-gulp.task('css', ['clean:css'], done => {
+/* ================= BUILD TASKS ================= */
+
+function css(done) {
   pump([
     gulp.src('src/scss/style.scss'),
-    gulpIf(!global.production, sourcemaps.init()),
+    gulpIf(!production, sourcemaps.init()),
     sass({ outputStyle: 'compressed' }).on('error', sass.logError),
-    gulpIf(!global.production, sourcemaps.write()),
+    gulpIf(!production, sourcemaps.write()),
     gulp.dest('public/css')
   ], done);
-});
+}
 
-gulp.task('js', ['clean:js'], done => {
+function js(done) {
   pump([
     gulp.src('src/js/app.js'),
-    gulpIf(!global.production, sourcemaps.init()),
-    babel({
-      presets: ['env']
-    }),
+    gulpIf(!production, sourcemaps.init()),
+    babel({ presets: ['env'] }),
     uglify(),
-    gulpIf(!global.production, sourcemaps.write()),
+    gulpIf(!production, sourcemaps.write()),
     gulp.dest('public/js')
   ], done);
-});
+}
 
-gulp.task('build', ['images', 'sounds', 'html', 'css', 'js']);
+/* ================= COMPOSED TASKS ================= */
 
-gulp.task('deploy', () => {
-  global.production = true;
-  gulp.start(['build']);
-});
+const build = series(
+  parallel(
+    series(cleanFonts, fonts),
+    series(cleanImages, images),
+    series(cleanSounds, sounds),
+    series(cleanHtml, html),
+    series(cleanCss, css),
+    series(cleanJs, js)
+  )
+);
 
-gulp.task('default', ['build'], () => {
-  gulp.watch('src/images/**', ['images']);
-  gulp.watch('src/fonts/**', ['fonts']);
-  gulp.watch('src/sounds/**', ['sounds']);
-  gulp.watch('src/index.html', ['html']).on('change', browserSync.reload);
-  gulp.watch('src/scss/style.scss', ['css']).on('change', browserSync.reload);
-  gulp.watch('src/js/app.js', ['js']).on('change', browserSync.reload);
+function deploy(done) {
+  production = true;
+  build(done);
+}
 
+/* ================= DEV / WATCH ================= */
+
+function serve() {
   browserSync.init({
     server: './public',
     online: false
   });
-});
+
+  gulp.watch('src/images/**', series(cleanImages, images));
+  gulp.watch('src/fonts/**', series(cleanFonts, fonts));
+  gulp.watch('src/sounds/**', series(cleanSounds, sounds));
+  gulp.watch('src/index.html', series(cleanHtml, html)).on('change', browserSync.reload);
+  gulp.watch('src/scss/style.scss', series(cleanCss, css)).on('change', browserSync.reload);
+  gulp.watch('src/js/app.js', series(cleanJs, js)).on('change', browserSync.reload);
+}
+
+/* ================= EXPORTS ================= */
+
+exports.build = build;
+exports.deploy = deploy;
+exports.default = series(build, serve);

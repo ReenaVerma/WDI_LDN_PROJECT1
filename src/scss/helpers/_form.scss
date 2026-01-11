@@ -1,3 +1,4 @@
+@use "./variables" as vars;
 
 form {
   width: 600px;
@@ -21,12 +22,12 @@ form {
 input[type=text] {
   width: 90%;
   padding: 8px 12px;
-  border: 1px solid $light-grey;
+  border: 1px solid vars.$light-grey;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   background-color: rgba(255,255,255, 0.2);
   cursor: text;
-  color: $text-white;
+  color: vars.$text-white;
   font-size: 25px;
   outline: none;
   height: 50px;
@@ -36,7 +37,7 @@ input[type=text] {
 
 input[type=submit] {
   width: 10%;
-  background-color: $light-grey;
+  background-color: vars.$light-grey;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
 }

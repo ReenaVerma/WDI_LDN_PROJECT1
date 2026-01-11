@@ -1,28 +1,33 @@
+@use "./variables" as vars;
 
 p, h1, h2, h3 {
-  color: $text-white;
+  color: vars.$text-white;
   text-align: center;
   font-weight: lighter;
 }
 
 h1 {
   font-size: 50px;
-  text-shadow: 0 0 0.2em $text-blue;
+  text-shadow: 0 0 0.2em vars.$text-blue;
 }
 
 h2 {
-  margin: -30px;
-  color: $text-yellow;
+  // margin: -30px;
+  color: vars.$text-yellow;
   @media only screen and (max-width: 600px) {
       padding-left: 20px;
       padding-right: 20px;
   }
 }
 
+intro {
+  margin: 0 auto;
+}
+
 
 h3 {
   margin: 50px;
-  color: $text-blue;
+  color: vars.$text-blue;
   font-size: 40px;
 }
 
@@ -30,15 +35,15 @@ button {
   width: 300px;
   border: 0px;
   background: none;
-  color: $text-blue;
+  color: vars.$text-blue;
   margin-top: 50px;
   font-size: 40px;
   cursor: pointer;
   letter-spacing: 10px;
-  text-shadow: 0 0 0.2em $green;
+  text-shadow: 0 0 0.2em vars.$text-green;
 }
 
 .fa-music:hover {
-  color: $text-blue;
+  color: vars.$text-blue;
   cursor: pointer;
 }
