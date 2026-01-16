@@ -14,49 +14,49 @@ let production = false;
 /* ================= CLEAN TASKS ================= */
 
 function cleanCss() {
-  return del(['public/css']);
+  return del(['dist/css']);
 }
 
 function cleanJs() {
-  return del(['public/js']);
+  return del(['dist/js']);
 }
 
 function cleanHtml() {
-  return del(['public/index.html']);
+  return del(['dist/index.html']);
 }
 
 function cleanFonts() {
-  return del(['public/fonts/**']);
+  return del(['dist/fonts/**']);
 }
 
 function cleanImages() {
-  return del(['public/images/**']);
+  return del(['dist/images/**']);
 }
 
 function cleanSounds() {
-  return del(['public/sounds/**']);
+  return del(['dist/sounds/**']);
 }
 
 /* ================= COPY TASKS ================= */
 
 function fonts() {
   return gulp.src('src/fonts/**/*')
-    .pipe(gulp.dest('public/fonts'));
+    .pipe(gulp.dest('dist/fonts'));
 }
 
 function images() {
   return gulp.src('src/images/**/*')
-    .pipe(gulp.dest('public/images'));
+    .pipe(gulp.dest('dist/images'));
 }
 
 function sounds() {
   return gulp.src('src/sounds/**/*')
-    .pipe(gulp.dest('public/sounds'));
+    .pipe(gulp.dest('dist/sounds'));
 }
 
 function html() {
   return gulp.src('src/index.html')
-    .pipe(gulp.dest('public/'));
+    .pipe(gulp.dest('dist/'));
 }
 
 /* ================= BUILD TASKS ================= */
@@ -67,7 +67,7 @@ function css(done) {
     gulpIf(!production, sourcemaps.init()),
     sass({ outputStyle: 'compressed' }).on('error', sass.logError),
     gulpIf(!production, sourcemaps.write()),
-    gulp.dest('public/css')
+    gulp.dest('dist/css')
   ], done);
 }
 
@@ -78,7 +78,7 @@ function js(done) {
     babel({ presets: ['env'] }),
     uglify(),
     gulpIf(!production, sourcemaps.write()),
-    gulp.dest('public/js')
+    gulp.dest('dist/js')
   ], done);
 }
 
@@ -104,7 +104,7 @@ function deploy(done) {
 
 function serve() {
   browserSync.init({
-    server: './public',
+    server: './dist',
     online: false
   });
 

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WDI Project 1: Sci-Fi Game</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/js/app.js" charset="utf-8"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <!--  -->
+  <audio id="pointsSound" src="sounds/points_score.wav" type="audio/mpeg"></audio>
+  <audio id="incorrectSound" src="sounds/incorrect_sound.wav" type="audio/mpeg"></audio>
+  <audio id="yodaSound" src="sounds/star_wars_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="aliensSound" src="sounds/aliens_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="idSound" src="sounds/id_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="etSound" src="sounds/ET_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="matrixSound" src="sounds/the_matrix.mp3" type="audio/mpeg"></audio>
+  <audio id="terminatorSound" src="sounds/terminator2_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="flashSound" src="sounds/flash_gordon_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="bladerunnerSound" src="sounds/bladerunner_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="cloverfieldSound" src="sounds/cloverfield_sound.mp3" type="audio/mpeg"></audio>
+  <audio id="jurassicparkSound" src="sounds/jurassic_park_sound.mp3" type="audio/mpeg"></audio>
+
+  <main>
+    <h1 class="animated pulse">sci-fi movie quiz</h1>
+
+    <!-- HOMEPAGE INTRO AND PLAY CLICK EVENT -->
+    <div id="intro">
+      <h2>Think you're an intergalactic movie buff?<h2>
+      <img class="intro animated shake" src="images/alien_face.png" alt=""/>
+      <h2>See how many movies you can guess, <br />from the jumbled images!<h2>
+      <button id="play" class="animated pulse infinite">play now</button>
+    </div>
+
+    <!-- WHERE RESULTS/CORRECT ANSWER APPEARS -->
+    <div>
+      <h2 id='placeholdertext'></h2>
+    </div>
+
+    <!-- WHERE END OF GAME RESULT APPEARS -->
+    <div><h3 id="endmessage"></h3></div>
+
+    <section class="section1">
+      <div class="parent" >
+        <!-- WHERE SHUFFLED IMAGES APPEAR -->
+        <div id="imagescontainer" class="reveal"></div>
+      </div>
+    </section>
+
+    <!-- ENTIRE SECTION FOR FORM -->
+    <section class="section2" id="section2">
+        <div class="parent">
+          <form id="form" class="hide">
+            <p>enter your guess below and hit return!</p>
+              <div class="inputcontainer">
+                <input id="usertext" type="text" autocomplete="off"/>
+                <input type="submit" id="submit" value="go!"/>
+              </div>
+          </form>
+        </div>
+    </section>
+
+    <section class="section3" id="section3">
+          <div class="box item" id='countdown'></div>
+          <div class="box item" id='score'></div>
+          <div id='boost' class="box item animated pulse infinite"></div>
+    </section>
+
+  </main>
+</html>
